@@ -22,11 +22,16 @@ import {
   mysql,
   git,
   docker,
+  unity,
+  godot,
   // Works
   netapp,
   d_academy,
   vgf,
   // Projects
+  elsewhere,
+  segmentation,
+  mask,
   frs,
   digit,
   snake,
@@ -149,6 +154,14 @@ const technologies = [
     name: "Docker",
     icon: docker,
   },
+  {
+    name: "Unity",
+    icon: unity,
+  },
+  {
+    name: "Godot",
+    icon: godot,
+  },
 ];
 
 const experiences = [
@@ -202,7 +215,7 @@ const testimonials = [
     name: "Philip Quang",
     designation: "Performance Engineer",
     company: "NetApp, Inc.",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQHCTOFXge5Dow/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1683066757311?e=1750291200&v=beta&t=U6vTZbsGdT8isUBgm6h6O8SuWhNL_ZmrWjLshIAg268",
+    image: "https://media.licdn.com/dms/image/v2/D4D03AQHCTOFXge5Dow/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1683066757311?e=1772064000&v=beta&t=IGpnCqc4uIbZA9_ElWJ5SIuOS0nEDdhE3UtsRy6legs",
   },
   // {
   //   testimonial:
@@ -224,6 +237,76 @@ const testimonials = [
 
 const projects = [
   {
+    name: "Elsewhere",
+    description:
+      "A Godot 2D platformer game where You are a wandering traveler journeys through a mythical forest and meets spirits who have lost their masks and their identities. A strange force has scattered them. To help the spirits, you set out on a journey to locate all masks.",
+    tags: [
+      {
+        name: "godot",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "platformer",
+        color: "green-text-gradient",
+      },
+      {
+        name: "2d-game",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: elsewhere,
+    source_code_link: "https://github.com/Rererayren/WinterGameJam",
+    web_url: "https://sugarkhang02.itch.io/elsewhere"
+  },
+  {
+    name: "Medical Image Segmentation Using R2U-net and R2U-net++ Across Multiple Medical Datasets",
+    description:
+      "The implementation of nested and dense skip connection to R2U-net, called R2U-net++, for medical image segmentation. Evaluated on multiple datasets, R2U-net++ outperformed R2U-net and other models in accuracy and robustness, demonstrating its potential for improving medical image analysis.",
+    tags: [
+      {
+        name: "deep-learning",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "medical-imaging",
+        color: "green-text-gradient",
+      },
+      {
+        name: "segmentation",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "pytorch",
+        color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text",
+      },
+    ],
+    image: segmentation,
+    source_code_link: "https://github.com/Khang261002/Medical_Image_Segmentation",
+    web_url: ""
+  },
+  {
+    name: "MadeYouMask!",
+    description:
+      "A silly face mask making Unity game where You work in the \"all natural\" face mask making department at a spa. Create face masks per the customer's request-- no matter how ridiculous! Make different colored masks and please the customer (or not)!",
+    tags: [
+      {
+        name: "unity",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "point-n-click",
+        color: "green-text-gradient",
+      },
+      {
+        name: "2d-game",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: mask,
+    source_code_link: "https://github.com/Khang261002/MadeYouMask",
+    web_url: "https://sugarkhang02.itch.io/madeyoumask"
+  },
+  {
     name: "Face Recognition Systems Web Interface",
     description:
       "A web platform for user registration and check-in via facial recognition. Built with React, Tailwind CSS, and AI/ML for real-time detection and authentication.",
@@ -239,6 +322,10 @@ const projects = [
       {
         name: "ai-ml",
         color: "pink-text-gradient",
+      },
+      {
+        name: "mediapipe",
+        color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text",
       },
     ],
     image: frs,
@@ -285,7 +372,7 @@ const projects = [
         color: "green-text-gradient",
       },
       {
-        name: "game",
+        name: "2d-game",
         color: "pink-text-gradient",
       },
     ],
@@ -327,7 +414,7 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "game-development",
+        name: "platformer",
         color: "green-text-gradient",
       },
       {
