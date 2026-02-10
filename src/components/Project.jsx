@@ -96,7 +96,7 @@ const ProjectComponent = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-center text-secondary text-[17px] mx-auto max-w-4xl leading-[30px]'
         >
-          Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with link to code repository and live demo in it. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
+          Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with link to code repository. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
         </motion.p>
       </div>
 
