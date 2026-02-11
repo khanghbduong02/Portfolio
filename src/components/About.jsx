@@ -53,7 +53,7 @@ const AboutComponent = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-center text-secondary mx-auto text-[17px] max-w-5xl leading-[30px]'
       >
-        I&apos;m a dedicated and versatile Computer Science graduate with a strong foundation in software development, machine learning, and full-stack web development. Proficient in programming languages like Python, JavaScript, and Java, I have hands-on experience with frameworks such as Flask, Django, and React. I&apos;m a quick learner who enjoys collaborating to create innovative, scalable, and user-friendly solutions that address real-world challenges. With a passion for problem-solving and continuous learning, I am eager to turn ideas into impactful technologies. Let&apos;s work together to bring your ideas to reality!
+        I&apos;m a Computer Science graduate currently pursuing a Master&apos;s in Data Science, with experience in software engineering, machine learning, and full-stack web development. My technical experience includes building machine learning models (neural networks, regression, classification), developing full-stack applications with Flask, Django, and React, and implementing AI solutions such as medical image segmentation using R2U-Net in PyTorch. I enjoy working at the intersection of software engineering and data science—building scalable systems that transform data into actionable insights. I&apos;m particularly interested in roles involving machine learning engineering, web development, and data-driven system optimization.
       </motion.p>
 
       <div className='mt-20 mx-auto flex flex-wrap items-center justify-center gap-10'>
