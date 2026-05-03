@@ -359,7 +359,7 @@ const projects = [
     ],
     image: snake,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/jscode_snake",
-    web_url: "https://khangduong.w3spaces.com/Snake_game/snake.html",
+    web_url: "https://khangduong.w3spaces.com",
   },
   {
     name: "File Converter to ASCII Art",
