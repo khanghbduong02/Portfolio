@@ -25,10 +25,11 @@ const Navbar = () => {
           <img src={logo} alt='logo' className='w-10 h-10 object-contain' />
           <p className='text-white text-[18px] font-bold cursor-pointer flex'>
             Khang Duong
-            <span className='sm:block hidden'>&nbsp;| Portfolio</span>
+            <span className='xl:block hidden'>&nbsp;| Portfolio</span>
           </p>
         </Link>
-        <ul className='list-none hidden lg:flex flex-row gap-10'>
+        {/* Show all sections when screen is large */}
+        <ul className='list-none hidden lg:flex flex-row gap-8'>
           {navLinks.map((link) => (
             <li
               key={link.id}
@@ -43,7 +44,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-
+        {/* Show menu icon when screen is small */}
         <div className='lg:hidden  flex flex-1 justify-end items-center'>
           <img
             src={toggle ? close : menu}
