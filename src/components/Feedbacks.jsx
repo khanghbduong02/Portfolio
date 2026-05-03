@@ -12,15 +12,18 @@ const FeedbackCard = ({ index, testimonial, name, designation, company, image })
       variants={fadeIn('', '', 0.5 * index, 0.75)}
       className='bg-black-200 p-10 rounded-3xl text-left xs:w-[490px] w-full'
     >
-      <div className='relative h-full min-h-[250px] pb-16'>
+      <div className='flex flex-col h-full min-h-[250px]'>
+        {/* Quote mark */}
         <p className='text-white flex font-black text-[48px]'>&quot;</p>
 
-        <div className='mt-1 max-h-[106px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent'>
+        {/* Testimonial text — grows to fill space */}
+        <div className='mt-1 flex-1 max-h-[106px] overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent'>
           <p className='text-white tracking-wider text-[14px]'>{testimonial}</p>
         </div>
 
-        <div className='absolute bottom-0 left-0 right-0 flex justify-between items-center gap-1'>
-          <div className='flex-1 flex flex-col'>
+        {/* Author row — always below text, never overlaps */}
+        <div className='mt-7 bottom-0 left-0 right-0 flex justify-between items-center gap-3'>
+          <div className='flex flex-col min-w-0'>
             <p className='text-white font-medium text-[16px]'>
               <span className='blue-text-gradient'>@</span> {name}
             </p>
