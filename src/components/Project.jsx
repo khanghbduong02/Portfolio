@@ -51,7 +51,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
             {web_url && (
               <button
                 onClick={() => window.open(web_url, '_blank')}
-                className='flex-1 min-w-0 py-2 px-4 bg-white/10 hover:bg-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
+                className='flex-1 min-w-0 py-2 px-4 bg-black-200 hover:bg-white/10 border border-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
               >
                 <img src={globe} alt='website' className="w-4 h-4 flex-shrink-0" />
                 Website
@@ -60,7 +60,7 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
             {source_code_link && (
               <button
                 onClick={() => window.open(source_code_link, '_blank')}
-                className='flex-1 min-w-0 py-2 px-4 bg-white/10 hover:bg-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
+                className='flex-1 min-w-0 py-2 px-4 bg-black-200 hover:bg-white/10 border border-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
               >
                 <img src={github} alt='source code' className="w-4 h-4 flex-shrink-0" />
                 Source Code
