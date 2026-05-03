@@ -19,9 +19,11 @@ import godot from "./tech/godot.svg";
 import html from "./tech/html.png";
 import java from "./tech/java.svg";
 import javascript from "./tech/javascript.png";
+import jupyter from "./tech/jupyter.svg";
 import mongodb from "./tech/mongodb.png";
 import mysql from "./tech/mysql.svg";
 import python from "./tech/python.svg";
+import pytorch from "./tech/pytorch.svg";
 import reactjs from "./tech/reactjs.png";
 import sklearn from "./tech/sklearn.png";
 import sql from "./tech/sql.svg";
@@ -61,9 +63,11 @@ export {
   html,
   java,
   javascript,
+  jupyter,
   mongodb,
   mysql,
   python,
+  pytorch,
   reactjs,
   sklearn,
   sql,

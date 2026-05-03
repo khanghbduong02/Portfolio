@@ -6,22 +6,24 @@ import {
   ml,
   // Technologies
   python,
-  cpp,
-  java,
-  html,
-  css,
   javascript,
   reactjs,
-  threejs,
   tailwind,
   django,
   flask,
   sklearn,
-  sql,
-  mongodb,
+  pytorch,
   mysql,
   git,
   docker,
+  jupyter,
+  threejs,
+  mongodb,
+  html,
+  css,
+  java,
+  sql,
+  cpp,
   unity,
   godot,
   // Works
@@ -85,85 +87,6 @@ const services = [
   },
 ];
 
-const technologies = [
-  {
-    name: "Python",
-    icon: python,
-  },
-  {
-    name: "C++",
-    icon: cpp,
-  },
-  {
-    name: "Java",
-    icon: java,
-  },
-  {
-    name: "HTML",
-    icon: html,
-  },
-  {
-    name: "CSS",
-    icon: css,
-  },
-  {
-    name: "JavaScript",
-    icon: javascript,
-  },
-  {
-    name: "SQL",
-    icon: sql,
-  },
-  {
-    name: "React JS",
-    icon: reactjs,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
-  },
-  {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Django",
-    icon: django,
-  },
-  {
-    name: "Flask",
-    icon: flask,
-  },
-  {
-    name: "Scikit Learn",
-    icon: sklearn,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "MySQL",
-    icon: mysql,
-  },
-  {
-    name: "Git",
-    icon: git,
-  },
-  {
-    name: "Docker",
-    icon: docker,
-  },
-  {
-    name: "Unity",
-    icon: unity,
-  },
-  {
-    name: "Godot",
-    icon: godot,
-  },
-];
-
 const experiences = [
   {
     title: "Software Engineer in Test - Performance Benchmarking",
@@ -208,6 +131,93 @@ const experiences = [
   },
 ];
 
+const technologies = [
+  {
+    name: "Python",
+    icon: python,
+  },
+  {
+    name: "JavaScript",
+    icon: javascript,
+  },
+  {
+    name: "SQL",
+    icon: sql,
+  },
+  {
+    name: "React JS",
+    icon: reactjs,
+  },
+  {
+    name: "Tailwind CSS",
+    icon: tailwind,
+  },
+  {
+    name: "Django",
+    icon: django,
+  },
+  {
+    name: "Flask",
+    icon: flask,
+  },
+  {
+    name: "Scikit Learn",
+    icon: sklearn,
+  },
+  {
+    name: "PyTorch",
+    icon: pytorch,
+  },
+  {
+    name: "MySQL",
+    icon: mysql,
+  },
+  {
+    name: "Git",
+    icon: git,
+  },
+  {
+    name: "Docker",
+    icon: docker,
+  },
+  {
+    name: "Jupyter",
+    icon: jupyter,
+  },
+  {
+    name: "Three JS",
+    icon: threejs,
+  },
+  {
+    name: "MongoDB",
+    icon: mongodb,
+  },
+  {
+    name: "HTML",
+    icon: html,
+  },
+  {
+    name: "CSS",
+    icon: css,
+  },
+  {
+    name: "Java",
+    icon: java,
+  },
+  {
+    name: "C++",
+    icon: cpp,
+  },
+  {
+    name: "Unity",
+    icon: unity,
+  },
+  {
+    name: "Godot",
+    icon: godot,
+  },
+];
+
 const testimonials = [
   {
     testimonial:
@@ -217,22 +227,6 @@ const testimonials = [
     company: "NetApp, Inc.",
     image: "https://media.licdn.com/dms/image/v2/D4D03AQHCTOFXge5Dow/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1683066757311?e=1772064000&v=beta&t=IGpnCqc4uIbZA9_ElWJ5SIuOS0nEDdhE3UtsRy6legs",
   },
-  // {
-  //   testimonial:
-  //     "I've never met a web developer who truly cares about their clients' success like Rick does.",
-  //   name: "Chris Brown",
-  //   designation: "COO",
-  //   company: "DEF Corp",
-  //   image: "https://randomuser.me/api/portraits/men/5.jpg",
-  // },
-  // {
-  //   testimonial:
-  //     "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-  //   name: "Lisa Wang",
-  //   designation: "CTO",
-  //   company: "456 Enterprises",
-  //   image: "https://randomuser.me/api/portraits/women/6.jpg",
-  // },
 ];
 
 const projects = [
