@@ -44,6 +44,8 @@ import mask from "./project/made-you-mask.png";
 import segmentation from "./project/medical-image-segmentation.jpeg";
 import snake from "./project/snake.png";
 
+import philipq from "./testimonials/philipq.jpeg";
+
 export {
   logo,
   close,
@@ -85,4 +87,5 @@ export {
   mask,
   segmentation,
   snake,
+  philipq,
 };

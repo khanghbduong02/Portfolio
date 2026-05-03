@@ -4,6 +4,10 @@ import {
   software,
   datasci,
   ml,
+  // Works
+  netapp,
+  d_academy,
+  vgf,
   // Technologies
   python,
   javascript,
@@ -26,10 +30,6 @@ import {
   cpp,
   unity,
   godot,
-  // Works
-  netapp,
-  d_academy,
-  vgf,
   // Projects
   elsewhere,
   segmentation,
@@ -39,6 +39,8 @@ import {
   snake,
   ascii,
   flappybird,
+  // Testimonials
+  philipq,
 } from "../assets";
 
 export const navLinks = [
@@ -215,17 +217,6 @@ const technologies = [
   {
     name: "Godot",
     icon: godot,
-  },
-];
-
-const testimonials = [
-  {
-    testimonial:
-      "Khang has been a tremendous asset to our team and has helped us improving our Python script and analyzing performance data with his amazing tools. Khang's dedication, enthusiasm and commitment to doing great work shine through in everything he does. He always goes the extra mile to ensure our projects succeed and has shown himself to be a dependable, hardworking and team player. It's been a privilege to collaborate with him and I wholeheartedly recommend Khang for any future opportunities.",
-    name: "Philip Quang",
-    designation: "Performance Engineer",
-    company: "NetApp, Inc.",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQHCTOFXge5Dow/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1683066757311?e=1772064000&v=beta&t=IGpnCqc4uIbZA9_ElWJ5SIuOS0nEDdhE3UtsRy6legs",
   },
 ];
 
@@ -419,6 +410,17 @@ const projects = [
     image: flappybird,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/Flappy%20Bird",
     web_url: "",
+  },
+];
+
+const testimonials = [
+  {
+    testimonial:
+      "Khang has been a tremendous asset to our team and has helped us improving our Python script and analyzing performance data with his amazing tools. Khang's dedication, enthusiasm and commitment to doing great work shine through in everything he does. He always goes the extra mile to ensure our projects succeed and has shown himself to be a dependable, hardworking and team player. It's been a privilege to collaborate with him and I wholeheartedly recommend Khang for any future opportunities.",
+    name: "Philip Quang",
+    designation: "Performance Engineer",
+    company: "NetApp, Inc.",
+    image: philipq,
   },
 ];
 
