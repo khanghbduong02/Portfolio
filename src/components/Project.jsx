@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 
 import { styles } from '../styles'
-import { github } from '../assets'
+import { github, globe } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
@@ -23,34 +23,11 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
       >
         {/* Image — fixed height, no shrink */}
         <div className='relative w-full h-[230px] flex-shrink-0'>
-          {web_url ? (
-            <a href={web_url} target="_blank" rel="noopener noreferrer" title="Website">
-              <img
-                src={image}
-                alt={name}
-                className='w-full h-full object-cover rounded-2xl'
-              />
-            </a>
-          ) : (
-            <img
-              src={image}
-              alt={name}
-              className='w-full h-full object-cover rounded-2xl'
-            />
-          )}
-          <div className='absolute top-3 right-3 w-10 h-10 card-img_hover'>
-            <div
-              onClick={() => window.open(source_code_link, '_blank')}
-              className='black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer'
-              title="GitHub Link"
-              >
-              <img
-                src={github}
-                alt='source code'
-                className='w-3/4 h-3/4 object-contain'
-                />
-            </div>
-          </div>
+          <img
+            src={image}
+            alt={name}
+            className='w-full h-full object-cover rounded-2xl'
+          />
         </div>
 
         {/* Text content — grows and centers its content vertically */}
@@ -67,6 +44,30 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
             </p>
           ))}
         </div>
+
+        {/* Buttons */}
+        {(web_url || source_code_link) && (
+          <div className='mt-4 flex items-stretch justify-center gap-3'>
+            {web_url && (
+              <button
+                onClick={() => window.open(web_url, '_blank')}
+                className='flex-1 min-w-0 py-2 px-4 bg-white/10 hover:bg-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
+              >
+                <img src={globe} alt='website' className="w-4 h-4 flex-shrink-0" />
+                Website
+              </button>
+            )}
+            {source_code_link && (
+              <button
+                onClick={() => window.open(source_code_link, '_blank')}
+                className='flex-1 min-w-0 py-2 px-4 bg-white/10 hover:bg-white/20 transition-colors duration-200 rounded-lg text-white text-[13px] font-medium flex items-center justify-center gap-2'
+              >
+                <img src={github} alt='source code' className="w-4 h-4 flex-shrink-0" />
+                Source Code
+              </button>
+            )}
+          </div>
+        )}
       </motion.div>
     </Tilt>
   )
