@@ -2,6 +2,7 @@ import logo from "./logo/logo_enhanced-removebg-photoaidcom-cropped.png";
 import close from "./close.svg";
 
 import github from "./github.png";
+import globe from "./globe.svg";
 import menu from "./menu.svg";
 
 import datasci from "./service/datasci.png";
@@ -36,8 +37,10 @@ import netapp from "./company/netapp.png";
 import vgf from "./company/vgf.png";
 
 import ascii from "./project/ascii.png";
+import banking from "./project/banking.png";
 import digit from "./project/digit.png";
 import elsewhere from "./project/elsewhere.gif";
+import ezresume from "./project/ezresume.png";
 import flappybird from "./project/flappybird.png";
 import frs from "./project/frs.png";
 import mask from "./project/made-you-mask.png";
@@ -50,6 +53,7 @@ export {
   logo,
   close,
   github,
+  globe,
   menu,
   datasci,
   ml,
@@ -80,8 +84,10 @@ export {
   netapp,
   vgf,
   ascii,
+  banking,
   digit,
   elsewhere,
+  ezresume,
   flappybird,
   frs,
   mask,

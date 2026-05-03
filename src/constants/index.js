@@ -31,6 +31,8 @@ import {
   unity,
   godot,
   // Projects
+  ezresume,
+  banking,
   elsewhere,
   segmentation,
   mask,
@@ -222,6 +224,33 @@ const technologies = [
 
 const projects = [
   {
+    name: "EzResume",
+    description:
+      "An AI-powered web app that generates ATS-friendly resumes from user input. Built with React and Python, integrates Gemini API for content generation, and automates a LaTeX-to-PDF workflow for clean, professional output.",
+    tags: [
+      { name: "react", color: "blue-text-gradient" },
+      { name: "python", color: "green-text-gradient" },
+      { name: "gemini-api", color: "pink-text-gradient" },
+      { name: "latex", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+    ],
+    image: ezresume,
+    source_code_link: "https://github.com/khanghbduong02/EzResume-HackTheWu-2026",
+    web_url: ""
+  },
+  {
+    name: "Digital Banking & Channel Optimization",
+    description:
+      "Analyzed large-scale banking data to identify digital friction points and customer behavior patterns. Linked login failures and timeouts to increased support costs, and proposed solutions for authentication, session management, and digital experience.",
+    tags: [
+      { name: "data-analysis", color: "blue-text-gradient" },
+      { name: "hackathon", color: "green-text-gradient" },
+      { name: "banking", color: "pink-text-gradient" },
+    ],
+    image: banking,
+    source_code_link: "https://github.com/khanghbduong02/HackThePlains-2026",
+    web_url: ""
+  },
+  {
     name: "Elsewhere",
     description:
       "A Godot 2D platformer game where You are a wandering traveler journeys through a mythical forest and meets spirits who have lost their masks and their identities. A strange force has scattered them. To help the spirits, you set out on a journey to locate all masks.",
@@ -244,7 +273,7 @@ const projects = [
     web_url: "https://sugarkhang02.itch.io/elsewhere"
   },
   {
-    name: "Medical Image Segmentation Using R2U-net and R2U-net++ Across Multiple Medical Datasets",
+    name: "Medical Image Segmentation: R2U-net & R2U-net++",
     description:
       "The implementation of nested and dense skip connection to R2U-net, called R2U-net++, for medical image segmentation. Evaluated on multiple datasets, R2U-net++ outperformed R2U-net and other models in accuracy and robustness, demonstrating its potential for improving medical image analysis.",
     tags: [
@@ -294,24 +323,12 @@ const projects = [
   {
     name: "Face Recognition Systems Web Interface",
     description:
-      "A web platform for user registration and check-in via facial recognition. Built with React, Tailwind CSS, and AI/ML for real-time detection and authentication.",
+      "A full-stack web platform for user registration and check-in via real-time facial recognition. Uses Flask for the backend and React with TailwindCSS for the frontend, with security-conscious handling of face image data.",
     tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "tailwind",
-        color: "green-text-gradient",
-      },
-      {
-        name: "ai-ml",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "mediapipe",
-        color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text",
-      },
+      { name: "react", color: "blue-text-gradient" },
+      { name: "flask", color: "green-text-gradient" },
+      { name: "ai-ml", color: "pink-text-gradient" },
+      { name: "mediapipe", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: frs,
     source_code_link: "https://github.com/user101623/FRS-Production",
@@ -320,24 +337,12 @@ const projects = [
   {
     name: "Handwritten Digit Recognition",
     description:
-      "A robust handwritten digit recognition tool using four neural networks, built with Python, scikit-learn, and Theano. Features a user-friendly interface for seamless input, testing, and future adaptability.",
+      "A digit recognition tool using four neural network architectures, built with Python, scikit-learn, and Theano. Includes a drawable canvas for real-time testing and is structured for easy adaptation in future projects.",
     tags: [
-      {
-        name: "ai-ml",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "neural-network",
-        color: "green-text-gradient",
-      },
-      {
-        name: "theano",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "svm",
-        color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text",
-      },
+      { name: "ai-ml", color: "blue-text-gradient" },
+      { name: "neural-network", color: "green-text-gradient" },
+      { name: "theano", color: "pink-text-gradient" },
+      { name: "svm", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: digit,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/DigitRecognition",
@@ -346,45 +351,25 @@ const projects = [
   {
     name: "Basic Snake Game",
     description:
-      "A classic Snake game built with JavaScript and HTML5 Canvas, featuring smooth controls, increasing speed, and self-collision detection. Includes a real-time score, highest score tracking, and a replay option for endless fun.",
+      "A classic Snake game built with JavaScript and HTML5 Canvas, featuring smooth controls, increasing speed, real-time scoring, and high-score tracking. Hosted online for anyone to play.",
     tags: [
-      {
-        name: "html",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "js",
-        color: "green-text-gradient",
-      },
-      {
-        name: "2d-game",
-        color: "pink-text-gradient",
-      },
+      { name: "html", color: "blue-text-gradient" },
+      { name: "js", color: "green-text-gradient" },
+      { name: "2d-game", color: "pink-text-gradient" },
     ],
     image: snake,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/jscode_snake",
-    web_url: "https://khangduong.w3spaces.com/",
+    web_url: "https://khangduong.w3spaces.com/Snake_game/snake.html",
   },
   {
     name: "File Converter to ASCII Art",
-    description: "A Python-based tool that converts images and videos into ASCII art while preserving color and audio for videos. Uses OpenCV and PIL for efficient processing.",
+    description:
+      "A Python tool that converts images and videos into ASCII art while preserving color and audio. Auto-detects file types, converts video frames bidirectionally, and maps pixels to ASCII characters using OpenCV and PIL.",
     tags: [
-      {
-        name: "python",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "opencv",
-        color: "green-text-gradient",
-      },
-      {
-        name: "ascii-art",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "file-conversion",
-        color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text",
-      },
+      { name: "python", color: "blue-text-gradient" },
+      { name: "opencv", color: "green-text-gradient" },
+      { name: "ascii-art", color: "pink-text-gradient" },
+      { name: "file-conversion", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: ascii,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/FileToASCII",
@@ -392,20 +377,12 @@ const projects = [
   },
   {
     name: "Flappy Bird Game",
-    description: "A classic Flappy Bird clone built with Pygame, featuring smooth physics-based movement, randomized pipe generation, and a scoring system with high-score tracking. Provides an engaging gameplay experience with simple controls and dynamic difficulty.",
+    description:
+      "A Flappy Bird clone built with Pygame featuring physics-based movement, randomized pipe generation, and high-score tracking. My first Python project, used to learn game timing, object movement, and collision detection.",
     tags: [
-      {
-        name: "pygame",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "platformer",
-        color: "green-text-gradient",
-      },
-      {
-        name: "2d-game",
-        color: "pink-text-gradient",
-      },
+      { name: "pygame", color: "blue-text-gradient" },
+      { name: "platformer", color: "green-text-gradient" },
+      { name: "2d-game", color: "pink-text-gradient" },
     ],
     image: flappybird,
     source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/Flappy%20Bird",
