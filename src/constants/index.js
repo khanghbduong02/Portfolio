@@ -295,7 +295,7 @@ const projects = [
       },
     ],
     image: segmentation,
-    source_code_link: "https://github.com/Khang261002/Medical_Image_Segmentation",
+    source_code_link: "https://github.com/khanghbduong02/Medical_Image_Segmentation",
     web_url: ""
   },
   {
@@ -317,7 +317,7 @@ const projects = [
       },
     ],
     image: mask,
-    source_code_link: "https://github.com/Khang261002/MadeYouMask",
+    source_code_link: "https://github.com/khanghbduong02/MadeYouMask",
     web_url: "https://sugarkhang02.itch.io/madeyoumask"
   },
   {
@@ -345,7 +345,7 @@ const projects = [
       { name: "svm", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: digit,
-    source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/DigitRecognition",
+    source_code_link: "https://github.com/khanghbduong02/My-Projects/tree/main/DigitRecognition",
     web_url: "",
   },
   {
@@ -358,7 +358,7 @@ const projects = [
       { name: "2d-game", color: "pink-text-gradient" },
     ],
     image: snake,
-    source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/jscode_snake",
+    source_code_link: "https://github.com/khanghbduong02/My-Projects/tree/main/Games/jscode_snake",
     web_url: "https://khangduong.w3spaces.com",
   },
   {
@@ -372,7 +372,7 @@ const projects = [
       { name: "file-conversion", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: ascii,
-    source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/FileToASCII",
+    source_code_link: "https://github.com/khanghbduong02/My-Projects/tree/main/FileToASCII",
     web_url: "",
   },
   {
@@ -385,7 +385,7 @@ const projects = [
       { name: "2d-game", color: "pink-text-gradient" },
     ],
     image: flappybird,
-    source_code_link: "https://github.com/Khang261002/My-Projects/tree/main/Games/Flappy%20Bird",
+    source_code_link: "https://github.com/khanghbduong02/My-Projects/tree/main/Games/Flappy%20Bird",
     web_url: "",
   },
 ];
