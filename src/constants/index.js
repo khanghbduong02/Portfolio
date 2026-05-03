@@ -1,6 +1,6 @@
 import {
   // Services
-  web,
+  analyst,
   software,
   datasci,
   ml,
@@ -68,19 +68,19 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
-    icon: web,
-  },
-  {
     title: "Software Developer",
     icon: software,
+  },
+  {
+    title: "Data Analyst",
+    icon: analyst,
   },
   {
     title: "Data Scientist",
     icon: datasci,
   },
   {
-    title: "Machine Learning Engineer",
+    title: "AI/ML Engineer",
     icon: ml,
   },
 ];
@@ -170,7 +170,7 @@ const experiences = [
     company_name: "NetApp, Inc.",
     icon: netapp,
     iconBg: "#383E65",
-    date: "Oct 2022 - Now",
+    date: "Sep 2023 - Now",
     points: [
       "Designed and conducted testbeds with YML for controller firmware (CFW) testing on configurations",
       "Analyzed and interpreted data from hardware components",

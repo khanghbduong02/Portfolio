@@ -7,7 +7,7 @@ import menu from "./menu.svg";
 import datasci from "./service/datasci.png";
 import ml from "./service/ml.png";
 import software from "./service/software.png";
-import web from "./service/web.png";
+import analyst from "./service/analyst.png";
 
 import cpp from "./tech/cpp.svg";
 import css from "./tech/css.png";
@@ -50,7 +50,7 @@ export {
   datasci,
   ml,
   software,
-  web,
+  analyst,
   cpp,
   css,
   django,
