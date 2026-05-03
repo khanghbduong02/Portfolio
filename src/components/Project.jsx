@@ -15,13 +15,14 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
       tiltMaxAngleY={10}
       scale={1}
       transitionSpeed={450}
-      className='sm:w=[360px] w-[400px]'
+      className='sm:w-[360px] w-[400px] flex'
     >
       <motion.div
         variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
-        className='bg-tertiary p-5 rounded-2xl'
+        className='bg-tertiary p-5 rounded-2xl flex flex-col w-full'
       >
-        <div className='relative w-full h-[230px]'>
+        {/* Image — fixed height, no shrink */}
+        <div className='relative w-full h-[230px] flex-shrink-0'>
           {web_url ? (
             <a href={web_url} target="_blank" rel="noopener noreferrer" title="Website">
               <img
@@ -37,7 +38,6 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
               className='w-full h-full object-cover rounded-2xl'
             />
           )}
-
           <div className='absolute top-3 right-3 w-10 h-10 card-img_hover'>
             <div
               onClick={() => window.open(source_code_link, '_blank')}
@@ -53,11 +53,13 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
           </div>
         </div>
 
-        <div className='mt-5'>
+        {/* Text content — grows and centers its content vertically */}
+        <div className='mt-5 flex-1 flex flex-col justify-center'>
           <h3 className='text-white text-center font-bold text-[24px]'>{name}</h3>
           <p className='mt-2 text-secondary text-center text-[14px]'>{description}</p>
         </div>
 
+        {/* Tags — always at bottom, with a subtle divider */}
         <div className='mt-4 flex flex-wrap items-center justify-center gap-2'>
           {tags.map((tag) => (
             <p key={tag.name} className={`text-[14px] ${tag.color}`}>
@@ -100,7 +102,7 @@ const ProjectComponent = () => {
         </motion.p>
       </div>
 
-      <div className='mt-20 mx-auto flex flex-wrap items-center justify-center gap-7'>
+      <div className='mt-20 mx-auto flex flex-wrap items-stretch justify-center gap-7'>
         {projects.map((project, index) => (
           <ProjectCard key={`project-${index}`} index={index} {...project} />
         ))}
