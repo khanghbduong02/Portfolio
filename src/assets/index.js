@@ -1,5 +1,6 @@
 import logo from "./logo/logo_enhanced-removebg-photoaidcom-cropped.png";
 import close from "./close.svg";
+import khangPhoto from "./myPhoto.jpg";
 
 import github from "./github.png";
 import globe from "./globe.svg";
@@ -52,6 +53,7 @@ import philipq from "./testimonials/philipq.jpeg";
 export {
   logo,
   close,
+  khangPhoto,
   github,
   globe,
   menu,

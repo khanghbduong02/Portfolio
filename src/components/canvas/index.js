@@ -1,6 +1,6 @@
 import EarthCanvas from "./Earth";
 import BallView from "./Ball";
-import ComputersCanvas from "./Computers";
+import NeuralNetworkCanvas from "./NeuralNetwork";
 import StarsCanvas from "./Stars";
 
-export { EarthCanvas, BallView, ComputersCanvas, StarsCanvas };
+export { EarthCanvas, BallView, NeuralNetworkCanvas, StarsCanvas };
