@@ -35,6 +35,7 @@ import unity from "./tech/unity.svg"
 
 import d_academy from "./company/d_academy.png";
 import netapp from "./company/netapp.png";
+import pho316 from "./company/pho316.png";
 import vgf from "./company/vgf.png";
 
 import ascii from "./project/ascii.png";
@@ -84,6 +85,7 @@ export {
   unity,
   d_academy,
   netapp,
+  pho316,
   vgf,
   ascii,
   banking,

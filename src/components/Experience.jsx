@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import 'react-vertical-timeline-component/style.min.css'
 
 import { styles } from '../styles'
+import { globe } from '../assets'
 import { experiences } from '../constants'
 import { SectionWrapper } from '../hoc'
 import { textVariant } from '../utils/motion'
@@ -19,11 +20,17 @@ const ExperienceCard = ({ experience }) => {
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[75%] h-[75%] object-contain'
-          />
+          {experience.icon ? (
+            <img
+              src={experience.icon}
+              alt={experience.company_name}
+              className='w-[75%] h-[75%] object-contain'
+            />
+          ) : (
+            <span className='text-white text-xs font-bold tracking-wider'>
+              {experience.iconLabel}
+            </span>
+          )}
         </div>
       }
     >
@@ -42,6 +49,19 @@ const ExperienceCard = ({ experience }) => {
           </li>
         ))}
       </ul>
+
+      {experience.website_url && (
+        <a
+          href={experience.website_url}
+          target='_blank'
+          rel='noopener noreferrer'
+          aria-label={`Visit ${experience.company_name} website`}
+          className='mt-5 inline-flex items-center gap-2 rounded-lg border border-white/20 bg-black-200 px-4 py-2 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/10'
+        >
+          <img src={globe} alt='' aria-hidden='true' className='h-4 w-4 flex-shrink-0' />
+          Visit website
+        </a>
+      )}
     </VerticalTimelineElement>
   )
 }
@@ -53,9 +73,11 @@ ExperienceCard.propTypes = {
     icon: PropTypes.oneOfType([
         PropTypes.string,
         PropTypes.element
-    ]).isRequired,
+    ]),
+    iconLabel: PropTypes.string,
     iconBg: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
+    website_url: PropTypes.string,
     points: PropTypes.arrayOf(PropTypes.string).isRequired
   })
 }

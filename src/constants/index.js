@@ -7,6 +7,7 @@ import {
   // Works
   netapp,
   d_academy,
+  pho316,
   vgf,
   // Technologies
   python,
@@ -93,18 +94,43 @@ const services = [
 
 const experiences = [
   {
+    title: "Software Engineer Intern",
+    company_name: "NetApp, Inc.",
+    icon: netapp,
+    iconBg: "#383E65",
+    date: "Jun 2026 - Present",
+    points: [
+      "Engineered data pipelines that collect, clean, and validate hardware telemetry across hosts, controllers, RAID configurations, and drive protocols.",
+      "Developed and enhanced a Django-based Database Web Interface and PyNT automation system with Django, SQL, and Pytest to validate data and run test suites across preconfigured testbeds.",
+      "Built scikit-learn and CatBoost surrogate models to predict random and sequential read/write performance, reducing configuration-tuning cycles from weeks to hours.",
+      "Collaborated through Jira, Confluence, and Bitbucket to track work and deliver process improvements.",
+    ],
+  },
+  {
+    title: "Web Developer & Webmaster",
+    company_name: "Pho 316 Restaurant",
+    icon: pho316,
+    iconBg: "#10372A",
+    date: "Feb 2026 - Present",
+    website_url: "https://pho316.com",
+    points: [
+      "Architected and deployed a responsive, mobile-first React website that established the restaurant's digital presence.",
+      "Implemented Google Analytics 4 with react-ga4 to monitor acquisition sources and real-time traffic.",
+      "Configured GitHub-to-Cloudflare Pages CI/CD for automated builds and zero-downtime content deployments.",
+      "Improved page performance by compressing food media, adopting modern image formats, and reducing bundle size for sub-second load times.",
+      "Instrumented outbound delivery and directions links to measure high-value customer conversion paths.",
+    ],
+  },
+  {
     title: "Software Engineer in Test - Performance Benchmarking",
     company_name: "NetApp, Inc.",
     icon: netapp,
     iconBg: "#383E65",
-    date: "Sep 2023 - Now",
+    date: "Sep 2023 - Jun 2026",
     points: [
-      "Designed and conducted testbeds with YML for controller firmware (CFW) testing on configurations",
-      "Analyzed and interpreted data from hardware components",
-      "Developed and optimized automation processes with a Database Web Interface using Django to read, verify, analyze data, and automatically run tests on many different configurations using pre-setup testbeds",
-      "Managed performance benchmarking for various configurations with different Storage Controllers and different Protocols using tools like IO Meter, VDbench on a Database Web Interface",
-      "Utilized tools such as Confluence, Jira, and Bitbucket for task tracking and management",
-      "The engineering content of these responsibilities includes practical application of systems engineering principles, data analysis, and process optimization",
+      "Designed YAML-driven testbeds for controller firmware validation across storage configurations.",
+      "Built and benchmarked storage configurations spanning controllers and protocols using IOMeter and VDbench, surfacing results through a Database Web Interface for customer support.",
+      "Collaborated through Confluence, Jira, and Bitbucket to coordinate performance-testing work and process improvements.",
     ],
   },
   {
