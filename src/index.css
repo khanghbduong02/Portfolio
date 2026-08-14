@@ -202,3 +202,18 @@
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
+
+@media only screen and (max-width: 1169px) {
+  .experience-timeline-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .experience-timeline-date {
+    order: 1;
+  }
+
+  .experience-website-action {
+    order: 2;
+  }
+}

@@ -16,7 +16,9 @@ const ExperienceCard = ({ experience }) => {
       className='vertical-timeline-element--work'
       contentStyle={{ background: '#1d1836', color: '#fff' }}
       contentArrowStyle={{ borderRight: '7px solid #232631'}}
+      textClassName='experience-timeline-content'
       date={experience.date}
+      dateClassName='experience-timeline-date'
       iconStyle={{ background: experience.iconBg }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
@@ -51,16 +53,18 @@ const ExperienceCard = ({ experience }) => {
       </ul>
 
       {experience.website_url && (
-        <a
-          href={experience.website_url}
-          target='_blank'
-          rel='noopener noreferrer'
-          aria-label={`Visit ${experience.company_name} website`}
-          className='mt-5 inline-flex items-center gap-2 rounded-lg border border-white/20 bg-black-200 px-4 py-2 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/10'
-        >
-          <img src={globe} alt='' aria-hidden='true' className='h-4 w-4 flex-shrink-0' />
-          Visit website
-        </a>
+        <div className='experience-website-action mt-5 border-t border-white/10 pt-4'>
+          <a
+            href={experience.website_url}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={`Visit ${experience.company_name} website`}
+            className='flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 bg-black-200 px-4 py-2 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/10 sm:inline-flex sm:w-auto'
+          >
+            <img src={globe} alt='' aria-hidden='true' className='h-4 w-4 flex-shrink-0' />
+            Visit website
+          </a>
+        </div>
       )}
     </VerticalTimelineElement>
   )
