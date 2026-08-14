@@ -8,7 +8,7 @@ import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
 
-const ProjectCard = ({ index, name, description, tags, image, source_code_link, web_url }) => {
+const ProjectCard = ({ index, name, description, tags, image, coverLabel, source_code_link, web_url }) => {
   return (
     <Tilt
       tiltMaxAngleX={10}
@@ -23,11 +23,23 @@ const ProjectCard = ({ index, name, description, tags, image, source_code_link, 
       >
         {/* Image — fixed height, no shrink */}
         <div className='relative w-full h-[230px] flex-shrink-0'>
-          <img
-            src={image}
-            alt={name}
-            className='w-full h-full object-cover rounded-2xl'
-          />
+          {image ? (
+            <img
+              src={image}
+              alt={name}
+              className='w-full h-full object-cover rounded-2xl'
+            />
+          ) : (
+            <div
+              role='img'
+              aria-label={`${name} project cover`}
+              className='w-full h-full rounded-2xl bg-black-200 px-6 flex items-center justify-center'
+            >
+              <span className='text-center text-white text-[20px] font-bold leading-7'>
+                {coverLabel || name}
+              </span>
+            </div>
+          )}
         </div>
 
         {/* Text content — grows and centers its content vertically */}
@@ -81,7 +93,8 @@ ProjectCard.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired
   })),
-  image: PropTypes.string.isRequired,
+  image: PropTypes.string,
+  coverLabel: PropTypes.string,
   source_code_link: PropTypes.string.isRequired,
   web_url: PropTypes.string,
 }
@@ -99,7 +112,7 @@ const ProjectComponent = () => {
           variants={fadeIn("", "", 0.1, 1)}
           className='mt-3 text-center text-secondary text-[17px] mx-auto max-w-4xl leading-[30px]'
         >
-          Following projects showcase my skills and experience through real-world examples of my work. Each project is briefly described with link to code repository. It reflects my ability to solve complex problems, work with different technologies, and manage projects effectively.
+          These projects showcase my skills and experience through real-world work. Each includes a concise overview and, where available, a live demo or source repository.
         </motion.p>
       </div>
 

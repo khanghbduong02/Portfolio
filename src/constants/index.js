@@ -250,9 +250,24 @@ const technologies = [
 
 const projects = [
   {
+    name: "Real-Time Failure Detection for 3D Printers",
+    description:
+      "Trained a 24M-parameter PyTorch CNN with a ResNet-style architecture and squeeze-and-excitation attention to classify five 3D-print failure modes. Built a real-time computer-vision pipeline with OpenCV, ONNX, and asynchronous Python, adding temporal smoothing, Telegram alerts, and printer API auto-pause controls. Curated 5,000+ images with leak-free session splits and trained with class-weighted loss and automatic mixed precision.",
+    tags: [
+      { name: "pytorch", color: "blue-text-gradient" },
+      { name: "computer-vision", color: "green-text-gradient" },
+      { name: "onnx", color: "pink-text-gradient" },
+      { name: "opencv", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+    ],
+    image: null,
+    coverLabel: "3D Print Failure Detection",
+    source_code_link: "https://github.com/khanghbduong02/KhangDuong-CS898BA-Project",
+    web_url: "",
+  },
+  {
     name: "EzResume",
     description:
-      "An AI-powered web app that generates ATS-friendly resumes from user input. Built with React and Python, integrates Gemini API for content generation, and automates a LaTeX-to-PDF workflow for clean, professional output.",
+      "An AI-powered web app that generates ATS-friendly resumes and cover letters from candidate information and job postings. Built with React and Python, it uses Gemini API content generation and an automated LaTeX-to-PDF workflow for consistent, professional documents.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
       { name: "python", color: "green-text-gradient" },
@@ -261,7 +276,21 @@ const projects = [
     ],
     image: ezresume,
     source_code_link: "https://github.com/khanghbduong02/EzResume-HackTheWu-2026",
-    web_url: ""
+    web_url: "https://ezresumeai.vercel.app",
+  },
+  {
+    name: "Guardian Trail",
+    description:
+      "A cross-platform cooperative game built around continuous player communication and coordination, with keyboard and controller support on Windows, Linux, and macOS.",
+    tags: [
+      { name: "multiplayer", color: "blue-text-gradient" },
+      { name: "co-op", color: "green-text-gradient" },
+      { name: "cross-platform", color: "pink-text-gradient" },
+    ],
+    image: null,
+    coverLabel: "Guardian Trail",
+    source_code_link: "",
+    web_url: "https://sugarkhang02.itch.io/guardian-trail",
   },
   {
     name: "Digital Banking & Channel Optimization",
@@ -349,7 +378,7 @@ const projects = [
   {
     name: "Face Recognition Systems Web Interface",
     description:
-      "A full-stack web platform for user registration and check-in via real-time facial recognition. Uses Flask for the backend and React with TailwindCSS for the frontend, with security-conscious handling of face image data.",
+      "A full-stack web platform for user registration and check-in through real-time facial recognition. Built with Flask, React, and Tailwind CSS, it removes training images after processing to support more security-conscious handling of face data.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
       { name: "flask", color: "green-text-gradient" },
@@ -357,8 +386,22 @@ const projects = [
       { name: "mediapipe", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
     ],
     image: frs,
-    source_code_link: "https://github.com/user101623/FRS-Production",
+    source_code_link: "https://github.com/khanghbduong02/FRS-Prod",
     web_url: ""
+  },
+  {
+    name: "Face Detection",
+    description:
+      "A real-time computer-vision application that uses a pre-trained Haar Cascade model and webcam access to detect faces from live video input.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "opencv", color: "green-text-gradient" },
+      { name: "computer-vision", color: "pink-text-gradient" },
+    ],
+    image: null,
+    coverLabel: "Real-Time Face Detection",
+    source_code_link: "https://github.com/khanghbduong02/My-Projects/tree/main/FaceDetection",
+    web_url: "",
   },
   {
     name: "Handwritten Digit Recognition",
