@@ -81,7 +81,7 @@ function buildLayout() {
 }
 
 // ── InputLayer: photo on a double-sided plane ────────────────────────────────
-function InputLayer({ x, sz, flyInDelay = 0, flyInDuration = 1.4 }) {
+function InputLayer({ x, sz, flyInDelay = 0, flyInDuration = 1.4, reducedMotion = false }) {
   const [tex, setTex] = useState(null)
   const groupRef     = useRef()
   const prog         = useRef(0)
@@ -95,13 +95,18 @@ function InputLayer({ x, sz, flyInDelay = 0, flyInDuration = 1.4 }) {
   }, [])
 
   useEffect(() => {
+    if (reducedMotion) {
+      startedRef.current = true
+      return undefined
+    }
+
     const id = setTimeout(() => { startedRef.current = true }, flyInDelay * 1000)
     return () => clearTimeout(id)
-  }, [flyInDelay])
+  }, [flyInDelay, reducedMotion])
 
   // Fly-in: starts at world origin at scale 1.6 and eases to its final x at scale 1.
   useFrame((_, delta) => {
-    if (!groupRef.current || !startedRef.current) return
+    if (reducedMotion || !groupRef.current || !startedRef.current) return
     prog.current = Math.min(prog.current + delta / flyInDuration, 1)
     const e = easeOutBack(prog.current)
     groupRef.current.position.x = x * e
@@ -110,7 +115,7 @@ function InputLayer({ x, sz, flyInDelay = 0, flyInDuration = 1.4 }) {
   })
 
   return (
-    <group ref={groupRef} position={[0, 0, 0]} scale={1.6}>
+    <group ref={groupRef} position={reducedMotion ? [x, 0, 0] : [0, 0, 0]} scale={reducedMotion ? 1 : 1.6}>
       <mesh>
         <boxGeometry args={[0.01, sz, sz]} />
         <meshBasicMaterial color={C_INPUT} wireframe transparent opacity={0.5} />
@@ -126,19 +131,24 @@ function InputLayer({ x, sz, flyInDelay = 0, flyInDuration = 1.4 }) {
 }
 
 // ── AnimatedSlab ──────────────────────────────────────────────────────────────
-function AnimatedSlab({ fromX, toX, sliceThickness, sz, color, delay }) {
+function AnimatedSlab({ fromX, toX, sliceThickness, sz, color, delay, reducedMotion = false }) {
   const meshRef = useRef()
   const wireRef = useRef()
   const prog    = useRef(0)
-  const [go, setGo] = useState(false)
+  const [go, setGo] = useState(reducedMotion)
 
   useEffect(() => {
+    if (reducedMotion) {
+      setGo(true)
+      return undefined
+    }
+
     const t = setTimeout(() => setGo(true), delay * 1000)
     return () => clearTimeout(t)
-  }, [delay])
+  }, [delay, reducedMotion])
 
   useFrame((_, delta) => {
-    if (!go || !meshRef.current) return
+    if (reducedMotion || !go || !meshRef.current) return
     prog.current = Math.min(prog.current + delta / 0.5, 1)
     const cx = fromX + (toX - fromX) * easeOutBack(prog.current)
     meshRef.current.position.x = cx
@@ -152,12 +162,12 @@ function AnimatedSlab({ fromX, toX, sliceThickness, sz, color, delay }) {
   if (!go) return null
   return (
     <>
-      <mesh ref={meshRef} position={[fromX, 0, 0]}>
+      <mesh ref={meshRef} position={[reducedMotion ? toX : fromX, 0, 0]}>
         <boxGeometry args={[sliceThickness, sz, sz]} />
         <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.25}
-          transparent opacity={0} roughness={0.3} metalness={0.45} />
+          transparent opacity={reducedMotion ? 1 : 0} roughness={0.3} metalness={0.45} />
       </mesh>
-      <mesh ref={wireRef} position={[fromX, 0, 0]}>
+      <mesh ref={wireRef} position={[reducedMotion ? toX : fromX, 0, 0]}>
         <boxGeometry args={[sliceThickness, sz, sz]} />
         <meshBasicMaterial color={color} wireframe transparent opacity={0.18} />
       </mesh>
@@ -166,7 +176,7 @@ function AnimatedSlab({ fromX, toX, sliceThickness, sz, color, delay }) {
 }
 
 // ── FeatureLayer ──────────────────────────────────────────────────────────────
-function FeatureLayer({ layerDef, x, prevX, globalDelay }) {
+function FeatureLayer({ layerDef, x, prevX, globalDelay, reducedMotion = false }) {
   const { sz, w, slices, color } = layerDef
   const sliceThickness = (w / slices) * SLICE_INSET
   const step  = w / slices
@@ -182,6 +192,7 @@ function FeatureLayer({ layerDef, x, prevX, globalDelay }) {
             sliceThickness={sliceThickness}
             sz={sz} color={color}
             delay={globalDelay + i * 0.07}
+            reducedMotion={reducedMotion}
           />
         )
       })}
@@ -191,18 +202,23 @@ function FeatureLayer({ layerDef, x, prevX, globalDelay }) {
 
 // ── AnimatedNode ──────────────────────────────────────────────────────────────
 function AnimatedNode({ position, color, delay, nodeIdx,
-                        emissiveOverride = null, opacityScale = 1 }) {
+                        emissiveOverride = null, opacityScale = 1, reducedMotion = false }) {
   const ref  = useRef()
   const prog = useRef(0)
-  const [go, setGo] = useState(false)
+  const [go, setGo] = useState(reducedMotion)
 
   useEffect(() => {
+    if (reducedMotion) {
+      setGo(true)
+      return undefined
+    }
+
     const t = setTimeout(() => setGo(true), delay * 1000)
     return () => clearTimeout(t)
-  }, [delay])
+  }, [delay, reducedMotion])
 
   useFrame((_, delta) => {
-    if (!go || !ref.current) return
+    if (reducedMotion || !go || !ref.current) return
     prog.current = Math.min(prog.current + delta / 0.38, 1)
     ref.current.scale.setScalar(easeOutBack(prog.current))
     ref.current.material.opacity = clamp01(prog.current * 3) * opacityScale
@@ -213,17 +229,17 @@ function AnimatedNode({ position, color, delay, nodeIdx,
 
   if (!go) return null
   return (
-    <mesh ref={ref} position={position} scale={0}>
+    <mesh ref={ref} position={position} scale={reducedMotion ? 1 : 0}>
       <sphereGeometry args={[NODE_R, 14, 14]} />
       <meshStandardMaterial color={color} emissive={color}
-        emissiveIntensity={0.4} transparent opacity={0}
+        emissiveIntensity={emissiveOverride ?? 0.4} transparent opacity={reducedMotion ? opacityScale : 0}
         roughness={0.3} metalness={0.5} />
     </mesh>
   )
 }
 
 // ── FCLayer ───────────────────────────────────────────────────────────────────
-function FCLayer({ layerDef, x, layerIdx, globalDelay }) {
+function FCLayer({ layerDef, x, layerIdx, globalDelay, reducedMotion = false }) {
   const { nodes, color } = layerDef
   return (
     <>
@@ -238,6 +254,7 @@ function FCLayer({ layerDef, x, layerIdx, globalDelay }) {
             color={color}
             delay={globalDelay + orderFromTop * 0.07}
             nodeIdx={i + layerIdx * 10}
+            reducedMotion={reducedMotion}
           />
         )
       })}
@@ -247,13 +264,18 @@ function FCLayer({ layerDef, x, layerIdx, globalDelay }) {
 
 // ── OutputLayer: Khang on top (positive y), Not Khang below ──────────────────
 // Labels appear together with their node using DelayedLabel
-function DelayedLabel({ position, label, isKhang, delay }) {
-  const [show, setShow] = useState(false)
+function DelayedLabel({ position, label, isKhang, delay, reducedMotion = false }) {
+  const [show, setShow] = useState(reducedMotion)
   useEffect(() => {
+    if (reducedMotion) {
+      setShow(true)
+      return undefined
+    }
+
     // label appears slightly after the node finishes popping in (~0.38s)
     const t = setTimeout(() => setShow(true), (delay + 0.45) * 1000)
     return () => clearTimeout(t)
-  }, [delay])
+  }, [delay, reducedMotion])
 
   if (!show) return null
   return (
@@ -270,7 +292,7 @@ function DelayedLabel({ position, label, isKhang, delay }) {
   )
 }
 
-function OutputLayer({ x, delay }) {
+function OutputLayer({ x, delay, reducedMotion = false }) {
   // index 0 = Khang (top, positive y), index 1 = Not Khang (bottom)
   const items = [
     { label: 'Khang',     color: C_OUT, emissive: 1.2,  opacityScale: 1.0,  y: +NODE_GAP / 2 },
@@ -287,12 +309,14 @@ function OutputLayer({ x, delay }) {
             nodeIdx={i + 100}
             emissiveOverride={item.emissive}
             opacityScale={item.opacityScale}
+            reducedMotion={reducedMotion}
           />
           <DelayedLabel
             position={[x + NODE_R + 0.15, item.y + 0.12, 0]}
             label={item.label}
             isKhang={i === 0}
             delay={delay + i * 0.15}
+            reducedMotion={reducedMotion}
           />
         </group>
       ))}
@@ -365,10 +389,10 @@ function ConvBeam({ fromX, toX, fromSz, toSz, color, delay, count = 2 }) {
 
 // ── FlattenSkeleton (from old version) ───────────────────────────────────────
 function FlattenSkeleton({ fromXLeft, fromXRight, fromSz, sliceCount,
-                            toX, fcCount, color, delay, animated = true }) {
+                            toX, fcCount, color, delay, animated = true, reducedMotion = false }) {
   const refs     = useRef([])
   const startRef = useRef(0)
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(reducedMotion)
 
   const lines = useMemo(() => {
     const half = fromSz / 2
@@ -398,12 +422,17 @@ function FlattenSkeleton({ fromXLeft, fromXRight, fromSz, sliceCount,
   }, [sliceCount, fcCount, fromXLeft, fromXRight])
 
   useEffect(() => {
+    if (reducedMotion) {
+      setVisible(true)
+      return undefined
+    }
+
     const t = setTimeout(() => setVisible(true), delay * 1000)
     return () => clearTimeout(t)
-  }, [delay])
+  }, [delay, reducedMotion])
 
   useFrame(({ clock }) => {
-    if (!visible || !animated) return
+    if (reducedMotion || !visible || !animated) return
     if (!startRef.current) startRef.current = clock.getElapsedTime()
     const time = clock.getElapsedTime() - startRef.current
     const sliceX = (i) => sliceCount === 1
@@ -451,12 +480,17 @@ function FlattenSkeleton({ fromXLeft, fromXRight, fromSz, sliceCount,
 }
 
 // ── FCLines ───────────────────────────────────────────────────────────────────
-function FCLines({ fromCount, toCount, fromX, toX, color, delay }) {
-  const [visible, setVisible] = useState(false)
+function FCLines({ fromCount, toCount, fromX, toX, color, delay, reducedMotion = false }) {
+  const [visible, setVisible] = useState(reducedMotion)
   useEffect(() => {
+    if (reducedMotion) {
+      setVisible(true)
+      return undefined
+    }
+
     const t = setTimeout(() => setVisible(true), delay * 1000)
     return () => clearTimeout(t)
-  }, [delay])
+  }, [delay, reducedMotion])
 
   const segments = useMemo(() => {
     const pts = []
@@ -546,12 +580,14 @@ function FCParticles({ fromCount, toCount, fromX, toX, delay,
 }
 
 // ── Full CNN scene ────────────────────────────────────────────────────────────
-function CNNScene({ started }) {
+function CNNScene({ started, reducedMotion = false }) {
   const groupRef = useRef()
   const { xs }   = useMemo(() => buildLayout(), [])
-  const lowEnd   = useMemo(() => detectLowEndDevice(), [])
+  const lowEnd   = useMemo(() => reducedMotion || detectLowEndDevice(), [reducedMotion])
 
   const layerDelays = useMemo(() => {
+    if (reducedMotion) return LAYERS.map(() => 0)
+
     // Input has its own fly-in (~1.4s). Other layers should start appearing
     // shortly after the Input begins flying in, with snappy per-layer pacing.
     let t = 0.5
@@ -560,7 +596,7 @@ function CNNScene({ started }) {
       t += (l.type === 'feature' ? l.slices * 0.04 : l.nodes * 0.035) + 0.10
       return d
     })
-  }, [])
+  }, [reducedMotion])
 
   const allFCOut = useMemo(() =>
     LAYERS.map((l, i) => ({ ...l, i })).filter(l => l.type === 'fc' || l.type === 'out'), [])
@@ -581,19 +617,19 @@ function CNNScene({ started }) {
   }, [])
 
   useFrame(({ clock }) => {
-    if (!groupRef.current) return
+    if (reducedMotion || !groupRef.current) return
     groupRef.current.rotation.x = 0.18 + Math.sin(clock.getElapsedTime() * 0.08) * 0.04
   })
 
   return (
     <group ref={groupRef}>
       {/* Feature layers (Input + others) — only after click */}
-      {started && <InputLayer x={xs[0]} sz={LAYERS[0].sz} flyInDelay={0} flyInDuration={1.4} />}
+      {started && <InputLayer x={xs[0]} sz={LAYERS[0].sz} flyInDelay={0} flyInDuration={1.4} reducedMotion={reducedMotion} />}
       {started && LAYERS.map((layer, i) => {
         if (layer.type !== 'feature' || i === 0) return null
         return (
           <FeatureLayer key={i} layerDef={layer} x={xs[i]}
-            prevX={xs[i - 1]} globalDelay={layerDelays[i]} />
+            prevX={xs[i - 1]} globalDelay={layerDelays[i]} reducedMotion={reducedMotion} />
         )
       })}
 
@@ -602,12 +638,12 @@ function CNNScene({ started }) {
           {/* FC layers */}
           {fcOnly.map(({ i, ...layer }) => (
             <FCLayer key={i} layerDef={layer} x={xs[i]}
-              layerIdx={i} globalDelay={layerDelays[i]} />
+              layerIdx={i} globalDelay={layerDelays[i]} reducedMotion={reducedMotion} />
           ))}
 
           {/* Output layer — Khang top, Not Khang bottom */}
           {outLayer && (
-            <OutputLayer x={xs[outLayer.i]} delay={layerDelays[outLayer.i]} />
+            <OutputLayer x={xs[outLayer.i]} delay={layerDelays[outLayer.i]} reducedMotion={reducedMotion} />
           )}
 
           {/* FC→FC lines + particles — colored by the source FC layer
@@ -618,7 +654,7 @@ function CNNScene({ started }) {
             return (
               <group key={idx}>
                 <FCLines fromCount={la.nodes} toCount={lb.nodes}
-                  fromX={xs[la.i]} toX={xs[lb.i]} color={C_FC} delay={d} />
+                  fromX={xs[la.i]} toX={xs[lb.i]} color={C_FC} delay={d} reducedMotion={reducedMotion} />
                 {!lowEnd && (
                   <FCParticles fromCount={la.nodes} toCount={lb.nodes}
                     fromX={xs[la.i]} toX={xs[lb.i]}
@@ -634,7 +670,7 @@ function CNNScene({ started }) {
             <group>
               <FCLines fromCount={lastFC.nodes} toCount={outLayer.nodes}
                 fromX={xs[lastFC.i]} toX={xs[outLayer.i]} color={C_FC}
-                delay={layerDelays[outLayer.i]} />
+                delay={layerDelays[outLayer.i]} reducedMotion={reducedMotion} />
               {!lowEnd && (
                 <FCParticles fromCount={lastFC.nodes} toCount={outLayer.nodes}
                   fromX={xs[lastFC.i]} toX={xs[outLayer.i]}
@@ -655,7 +691,7 @@ function CNNScene({ started }) {
                 fromSz={f.sz} sliceCount={f.slices}
                 toX={xs[flattenLink.to.i]} fcCount={flattenLink.to.nodes}
                 color={C_FC} delay={layerDelays[flattenLink.to.i]}
-                animated={!lowEnd} />
+                animated={!lowEnd} reducedMotion={reducedMotion} />
             )
           })()}
 
@@ -695,8 +731,8 @@ function CameraFitter() {
 }
 
 // ── Canvas export ─────────────────────────────────────────────────────────────
-const NeuralNetworkCanvas = ({ phase }) => (
-  <Canvas frameloop="always"
+const NeuralNetworkCanvas = ({ phase, reducedMotion = false }) => (
+  <Canvas frameloop={reducedMotion ? 'demand' : 'always'}
     camera={{ position: [0, 0, 20], fov: 45 }}
     gl={{ preserveDrawingBuffer: true, alpha: true, antialias: true }}
     style={{ background: 'transparent', width: '100%', height: '100%' }}
@@ -706,7 +742,7 @@ const NeuralNetworkCanvas = ({ phase }) => (
     <pointLight position={[-6, -4, -6]} intensity={0.45} color="#35d3ac" />
     <directionalLight position={[0, 5, 3]} intensity={0.55} />
     <CameraFitter />
-    <CNNScene started={phase === 'cnn'} />
+    <CNNScene started={phase === 'cnn'} reducedMotion={reducedMotion} />
     <OrbitControls enableZoom={false} enablePan={false}
       enableRotate={phase === 'cnn'} rotateSpeed={0.55} />
     <Preload all />
@@ -714,7 +750,7 @@ const NeuralNetworkCanvas = ({ phase }) => (
 )
 
 // ── Intro overlay ─────────────────────────────────────────────────────────────
-export function IntroOverlay({ onStart, visible }) {
+export function IntroOverlay({ onStart, visible, reducedMotion = false }) {
   const [morphing, setMorphing] = useState(false)
 
   // Reset morph state whenever the overlay becomes visible again (e.g. after restart),
@@ -725,6 +761,11 @@ export function IntroOverlay({ onStart, visible }) {
 
   const handleClick = () => {
     if (morphing) return
+    if (reducedMotion) {
+      onStart?.()
+      return
+    }
+
     setMorphing(true)
     setTimeout(() => onStart?.(), 500)
   }
@@ -755,6 +796,11 @@ export function IntroOverlay({ onStart, visible }) {
         .nn-photo-wrap {
           animation: nn-photo-flash-scale 1.8s var(--ease-enter) infinite;
           will-change: transform;
+        }
+        .nn-photo-wrap--reduced {
+          animation: none;
+          transform: scale(1);
+          will-change: auto;
         }
         .nn-photo-trigger:focus-visible .nn-photo-wrap,
         .nn-photo-trigger:hover .nn-photo-wrap {
@@ -813,7 +859,7 @@ export function IntroOverlay({ onStart, visible }) {
         onClick={handleClick}
       >
         {/* Circular photo morphs into a square as the 3D input enters. */}
-        <div className={`nn-photo-wrap overflow-hidden rounded-round border-2 border-accent transition-colors duration-fast ease-standard ${morphing ? 'morphing' : ''}`} style={{
+        <div className={`nn-photo-wrap ${reducedMotion ? 'nn-photo-wrap--reduced' : ''} overflow-hidden rounded-round border-2 border-accent transition-colors duration-fast ease-standard ${morphing ? 'morphing' : ''}`} style={{
           width:        'clamp(120px, min(80vw, 80vh), 260px)',
           height:       'clamp(120px, min(80vw, 80vh), 260px)',
           position:     'relative',
@@ -867,6 +913,7 @@ InputLayer.propTypes = {
   sz:            PropTypes.number.isRequired,
   flyInDelay:    PropTypes.number,
   flyInDuration: PropTypes.number,
+  reducedMotion: PropTypes.bool,
 }
 
 AnimatedSlab.propTypes = {
@@ -876,6 +923,7 @@ AnimatedSlab.propTypes = {
   sz:             PropTypes.number.isRequired,
   color:          PropTypes.object.isRequired,
   delay:          PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 FeatureLayer.propTypes = {
@@ -883,6 +931,7 @@ FeatureLayer.propTypes = {
   x:           PropTypes.number.isRequired,
   prevX:       PropTypes.number,
   globalDelay: PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 AnimatedNode.propTypes = {
@@ -892,6 +941,7 @@ AnimatedNode.propTypes = {
   nodeIdx:          PropTypes.number.isRequired,
   emissiveOverride: PropTypes.number,
   opacityScale:     PropTypes.number,
+  reducedMotion:    PropTypes.bool,
 }
 
 FCLayer.propTypes = {
@@ -899,6 +949,7 @@ FCLayer.propTypes = {
   x:           PropTypes.number.isRequired,
   layerIdx:    PropTypes.number.isRequired,
   globalDelay: PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 DelayedLabel.propTypes = {
@@ -906,11 +957,13 @@ DelayedLabel.propTypes = {
   label:    PropTypes.string.isRequired,
   isKhang:  PropTypes.bool,
   delay:    PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 OutputLayer.propTypes = {
   x:     PropTypes.number.isRequired,
   delay: PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 ConvBeam.propTypes = {
@@ -933,6 +986,7 @@ FlattenSkeleton.propTypes = {
   color:      PropTypes.object.isRequired,
   delay:      PropTypes.number.isRequired,
   animated:   PropTypes.bool,
+  reducedMotion: PropTypes.bool,
 }
 
 FCLines.propTypes = {
@@ -942,6 +996,7 @@ FCLines.propTypes = {
   toX:       PropTypes.number.isRequired,
   color:     PropTypes.object.isRequired,
   delay:     PropTypes.number.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 FCParticles.propTypes = {
@@ -956,16 +1011,19 @@ FCParticles.propTypes = {
 }
 
 CNNScene.propTypes = {
-  started: PropTypes.bool.isRequired,
+  started:       PropTypes.bool.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 NeuralNetworkCanvas.propTypes = {
-  phase: PropTypes.oneOf(['intro', 'cnn']).isRequired,
+  phase:         PropTypes.oneOf(['intro', 'cnn']).isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 IntroOverlay.propTypes = {
-  onStart: PropTypes.func,
-  visible: PropTypes.bool.isRequired,
+  onStart:       PropTypes.func,
+  visible:       PropTypes.bool.isRequired,
+  reducedMotion: PropTypes.bool,
 }
 
 RestartButton.propTypes = {

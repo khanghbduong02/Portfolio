@@ -2,15 +2,19 @@
 import { useState, useRef, Suspense } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial, Preload } from "@react-three/drei";
+import { useReducedMotion } from "framer-motion";
 import * as random from "maath/random/dist/maath-random.esm";
 
 const STAR_COLOR = '#35d3ac'
 
 const Stars = (props) => {
   const ref = useRef()
+  const reducedMotion = useReducedMotion()
   const [sphere] = useState(() => random.inSphere(new Float32Array(3000), { radius: 1.2 }))
 
   useFrame((state, delta) => {
+    if (reducedMotion || !ref.current) return
+
     ref.current.rotation.x -= delta / 10;
     ref.current.rotation.y -= delta / 15;
   })
@@ -31,9 +35,12 @@ const Stars = (props) => {
 };
 
 const StarsCanvas = () => {
+  const reducedMotion = useReducedMotion()
+
   return (
     <div className='w-full h-auto absolute inset-0 z-[-1]'>
       <Canvas
+        frameloop={reducedMotion ? 'demand' : 'always'}
         camera={{ position: [0, 0, 1] }} 
         gl={{ preserveDrawingBuffer: true }}
       >

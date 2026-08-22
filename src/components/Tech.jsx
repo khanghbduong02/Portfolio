@@ -62,6 +62,8 @@ const TechnologyNode = ({ skill, orbit, isActive, onActivate, onFocus, onDeactiv
   const orbitStyle = {
     '--orbit-duration': `${orbitalPeriods[orbit.track]}s`,
     '--orbit-delay': `-${(orbitalPeriods[orbit.track] * orbit.phase / 100).toFixed(2)}s`,
+    '--orbit-angle': `${(orbit.phase * 3.6).toFixed(3)}deg`,
+    '--orbit-counter-angle': `-${(orbit.phase * 3.6).toFixed(3)}deg`,
   }
 
   return (

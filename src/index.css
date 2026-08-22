@@ -706,6 +706,25 @@ body {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
+
+  .action-button__spinner {
+    animation: none !important;
+  }
+
+  .skill-orbit__carrier {
+    animation: none !important;
+    transform: rotate(var(--orbit-angle));
+  }
+
+  .skill-node__body {
+    animation: none !important;
+    transform: rotate(var(--orbit-counter-angle));
+  }
+
+  .skill-node__orb::before {
+    animation: none !important;
+    transform: rotate(var(--orbit-angle));
+  }
 }
 
 .hash-span {

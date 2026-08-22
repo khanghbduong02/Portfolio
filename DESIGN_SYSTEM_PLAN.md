@@ -37,7 +37,7 @@
 - [x] Use short stagger intervals for related content and avoid long index-based delays on lower project cards.
 - [x] Keep motion that supports hierarchy, interaction, or the portfolio's visual identity; the animated technology balls, Earth, and star field are intentional ambient motion.
 - [x] Add consistent section-reveal effects and lazy-mount the interactive technology systems when the Technologies section becomes visible.
-- [ ] Respect `prefers-reduced-motion` for scrolling indicators, canvas effects, and entrance animations.
+- [x] Respect `prefers-reduced-motion` for scrolling indicators, canvas effects, and entrance animations.
 
 ### 5. Improve Interaction Feedback
 

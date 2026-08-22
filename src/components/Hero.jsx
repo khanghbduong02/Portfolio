@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { motion as motionTokens, styles } from '../styles'
 import { fadeIn } from '../utils/motion'
@@ -9,6 +9,7 @@ const Hero = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [phase, setPhase]         = useState('intro') // 'intro' | 'cnn'
   const [runId, setRunId]         = useState(0)       // bumped on restart to remount the canvas
+  const reduceMotion = useReducedMotion()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -66,9 +67,9 @@ const Hero = () => {
       >
         {isVisible && (
           <>
-            <IntroOverlay visible={phase === 'intro'} onStart={handleStart} />
+            <IntroOverlay reducedMotion={reduceMotion} visible={phase === 'intro'} onStart={handleStart} />
             <RestartButton visible={phase === 'cnn'} onRestart={handleRestart} />
-            <NeuralNetworkCanvas key={runId} phase={phase} />
+            <NeuralNetworkCanvas key={runId} reducedMotion={reduceMotion} phase={phase} />
             {phase === 'cnn' && (
               <div
                 style={{
@@ -114,7 +115,7 @@ const Hero = () => {
         <a href='#about' aria-label='Scroll to overview'>
           <div className='flex h-14 w-8 items-start justify-center rounded-round border-2 border-line bg-surface p-2'>
             <motion.div
-              animate={{ y: [0, 24, 0] }}
+              animate={reduceMotion ? undefined : { y: [0, 24, 0] }}
               transition={{ duration: 1.5, ease: motionTokens.easing.enter, repeat: Infinity, repeatType: 'loop' }}
               className='mb-1 h-2.5 w-2.5 rounded-round bg-accent'
             />
