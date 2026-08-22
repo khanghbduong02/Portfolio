@@ -4,6 +4,7 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import { Line, OrbitControls, Preload, Html } from '@react-three/drei'
 import * as THREE from 'three'
 import PropTypes from 'prop-types'
+import { MousePointerClick } from 'lucide-react'
 import { khangPhoto } from '../../assets'
 
 // ── palette ───────────────────────────────────────────────────────────────────
@@ -747,6 +748,51 @@ export function IntroOverlay({ onStart, visible }) {
         .nn-photo-wrap.morphing {
           animation: morph-to-square var(--duration-enter) var(--ease-enter) forwards;
         }
+        @keyframes nn-photo-flash-scale {
+          0%, 62%, 100% { transform: scale(1); }
+          76% { transform: scale(1.03); }
+        }
+        .nn-photo-wrap {
+          animation: nn-photo-flash-scale 1.8s var(--ease-enter) infinite;
+          will-change: transform;
+        }
+        .nn-photo-trigger:focus-visible .nn-photo-wrap,
+        .nn-photo-trigger:hover .nn-photo-wrap {
+          animation: none;
+          border-color: rgb(var(--color-accent-strong));
+          transform: scale(1.025);
+        }
+        .nn-photo-action {
+          align-items: center;
+          background: rgb(var(--color-canvas) / 0.48);
+          display: flex;
+          inset: 0;
+          justify-content: center;
+          opacity: 0;
+          pointer-events: none;
+          position: absolute;
+          transition: opacity var(--duration-fast) var(--ease-standard);
+          z-index: 2;
+        }
+        .nn-photo-action-icon {
+          color: rgb(var(--color-content));
+          height: 2.25rem;
+          transform: scale(0.86);
+          transition: transform var(--duration-fast) var(--ease-standard);
+          width: 2.25rem;
+        }
+        .nn-photo-trigger:focus-visible .nn-photo-action,
+        .nn-photo-trigger:hover .nn-photo-action {
+          opacity: 1;
+        }
+        .nn-photo-trigger:focus-visible .nn-photo-action-icon,
+        .nn-photo-trigger:hover .nn-photo-action-icon {
+          transform: scale(1);
+        }
+        .nn-photo-trigger:focus-visible .nn-photo-wrap {
+          outline: 2px solid rgb(var(--color-focus));
+          outline-offset: 4px;
+        }
         .nn-text-fade.morphing { animation: fade-out var(--duration-standard) var(--ease-exit) forwards; }
         @keyframes fade-out { to { opacity: 0; } }
       `}</style>
@@ -762,12 +808,12 @@ export function IntroOverlay({ onStart, visible }) {
       <button
         type='button'
         aria-label='Show the FaceID neural network visualization'
-        className='group relative cursor-pointer border-0 bg-transparent p-0'
+        className='nn-photo-trigger group relative cursor-pointer rounded-round border-0 bg-transparent p-0 focus:outline-none'
         style={{ pointerEvents: 'auto' }}
         onClick={handleClick}
       >
         {/* Circular photo morphs into a square as the 3D input enters. */}
-        <div className={`nn-photo-wrap overflow-hidden rounded-round border-2 border-accent transition-colors duration-fast ease-standard group-hover:border-accent-strong ${morphing ? 'morphing' : ''}`} style={{
+        <div className={`nn-photo-wrap overflow-hidden rounded-round border-2 border-accent transition-colors duration-fast ease-standard ${morphing ? 'morphing' : ''}`} style={{
           width:        'clamp(120px, min(80vw, 80vh), 260px)',
           height:       'clamp(120px, min(80vw, 80vh), 260px)',
           position:     'relative',
@@ -775,6 +821,9 @@ export function IntroOverlay({ onStart, visible }) {
         }}>
           <img src={khangPhoto} alt="Khang"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+          <span className='nn-photo-action' aria-hidden='true'>
+            <MousePointerClick className='nn-photo-action-icon' strokeWidth={1.8} />
+          </span>
         </div>
       </button>
 
