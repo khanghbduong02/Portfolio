@@ -349,7 +349,8 @@
     }
   ],
   "extensionsUsed": [
-    "KHR_materials_unlit"
+    "KHR_materials_unlit",
+    "EXT_texture_webp"
   ],
   "images": [
     {
@@ -357,6 +358,14 @@
     },
     {
       "uri": "textures/Planet_baseColor.png"
+    },
+    {
+      "mimeType": "image/webp",
+      "uri": "textures/Clouds_baseColor.webp"
+    },
+    {
+      "mimeType": "image/webp",
+      "uri": "textures/Planet_baseColor.webp"
     }
   ],
   "materials": [
@@ -526,11 +535,21 @@
   "textures": [
     {
       "sampler": 0,
-      "source": 0
+      "source": 0,
+      "extensions": {
+        "EXT_texture_webp": {
+          "source": 2
+        }
+      }
     },
     {
       "sampler": 0,
-      "source": 1
+      "source": 1,
+      "extensions": {
+        "EXT_texture_webp": {
+          "source": 3
+        }
+      }
     }
   ]
 }
