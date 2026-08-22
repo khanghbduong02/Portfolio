@@ -2,9 +2,9 @@ import PropTypes from "prop-types";
 import { motion } from 'framer-motion'
 import { Bot, ChartNoAxesCombined, ChartSpline, Code2 } from 'lucide-react'
 
-import { styles } from '../styles'
+import { motion as motionTokens, styles } from '../styles'
 import { services } from '../constants'
-import { fadeIn, textVariant} from '../utils/motion'
+import { fadeIn, staggerContainer, textVariant} from '../utils/motion'
 import { SectionWrapper } from '../hoc'
 
 const serviceIcons = {
@@ -14,12 +14,12 @@ const serviceIcons = {
   'AI/ML Engineer': Bot,
 }
 
-const ServiceCard = ({ index, title}) => {
+const ServiceCard = ({ title}) => {
   const Icon = serviceIcons[title]
 
   return (
     <motion.div
-      variants={fadeIn("right", "spring", 0.5 * index, 0.5)}
+      variants={fadeIn("right")}
       className='xs:w-[250px] w-full'
     >
       <div className='interactive-card flex min-h-[280px] flex-col items-center justify-evenly px-stack-xl py-stack-md'>
@@ -33,7 +33,6 @@ const ServiceCard = ({ index, title}) => {
 }
 
 ServiceCard.propTypes = {
-  index: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 }
 
@@ -46,17 +45,20 @@ const AboutComponent = () => {
       </motion.div>
 
       <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
+        variants={fadeIn("", 0.1, 1)}
         className='mt-stack-md mx-auto max-w-5xl text-center text-body-lg text-muted'
       >
         I&apos;m a Computer Science graduate currently pursuing a Master&apos;s in Data Science, with experience in software engineering, machine learning, and full-stack web development. My technical experience includes building machine learning models (neural networks, regression, classification), developing full-stack applications with Flask, Django, and React, and implementing AI solutions such as medical image segmentation using R2U-Net in PyTorch. I enjoy working at the intersection of software engineering and data science—building scalable systems that transform data into actionable insights. I&apos;m particularly interested in roles involving machine learning engineering, web development, and data-driven system optimization.
       </motion.p>
 
-      <div className='mt-stack-2xl mx-auto flex flex-wrap items-center justify-center gap-stack-xl'>
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
+      <motion.div
+        variants={staggerContainer(motionTokens.stagger)}
+        className='mt-stack-2xl mx-auto flex flex-wrap items-center justify-center gap-stack-xl'
+      >
+        {services.map((service) => (
+          <ServiceCard key={service.title} {...service} />
         ))}
-      </div>
+      </motion.div>
     </>
   )
 }

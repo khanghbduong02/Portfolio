@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { motion as motionTokens, styles } from '../styles'
+import { fadeIn } from '../utils/motion'
 import NeuralNetworkCanvas, { IntroOverlay, RestartButton } from './canvas/NeuralNetwork'
 
 const Hero = () => {
@@ -34,7 +35,12 @@ const Hero = () => {
   }
 
   return (
-    <section className='relative z-0 flex h-dvh w-full flex-col overflow-hidden'>
+    <motion.section
+      className='relative z-0 flex h-dvh w-full flex-col overflow-hidden'
+      variants={fadeIn('up')}
+      initial='hidden'
+      animate='show'
+    >
       {/* hero text */}
       <div className={`${styles.paddingX} mx-auto flex w-full max-w-7xl shrink-0 flex-row items-start gap-stack-md pt-24 md:pt-28`}>
         <div className='mt-stack-xs flex flex-col items-center justify-center'>
@@ -115,7 +121,7 @@ const Hero = () => {
           </div>
         </a>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

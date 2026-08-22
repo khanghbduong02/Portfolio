@@ -75,7 +75,7 @@ const ContactComponent = () => {
   return (
     <div ref={canvasRef} className='flex w-full flex-col-reverse gap-stack-xl overflow-hidden xl:flex-row'>
       <motion.div
-        variants={slideIn('left', 'tween', 0.2, 1)}
+        variants={slideIn('left', 0.2, 1)}
         className='surface-panel flex-[0.75] p-stack-lg text-left'
       >
         <p className={`${styles.sectionSubText} !text-left`}>Get in touch</p>
@@ -164,7 +164,7 @@ const ContactComponent = () => {
       </motion.div>
       
       <motion.div
-        variants={slideIn('right', 'tween', 0.2, 1)}
+        variants={slideIn('right', 0.2, 1)}
         className='xl:flex-1 xl:h-[850px] md:h-[550px] md:w-[550px] sm:w-[450px] sm:h-[450px] h-[260px] w-[260px] m-auto'
       >
         {isVisible && <EarthCanvas />}

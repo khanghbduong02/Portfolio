@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 
-import { styles } from '../styles'
+import { motion as motionTokens, styles } from '../styles'
 import { SectionWrapper } from '../hoc'
-import { fadeIn, textVariant } from '../utils/motion'
+import { fadeIn, staggerContainer, textVariant } from '../utils/motion'
 import { testimonials } from '../constants'
 
-const FeedbackCard = ({ index, testimonial, name, designation, company, image }) => {
+const FeedbackCard = ({ testimonial, name, designation, company, image }) => {
   return (
     <motion.div
-      variants={fadeIn('', '', 0.5 * index, 0.75)}
+      variants={fadeIn('', 0, 0.75)}
       className='surface-panel w-full p-stack-xl text-left xs:w-[490px]'
     >
       <div className='flex flex-col h-full min-h-[250px]'>
@@ -44,7 +44,6 @@ const FeedbackCard = ({ index, testimonial, name, designation, company, image })
 }
 
 FeedbackCard.propTypes = {
-  index: PropTypes.number.isRequired,
   testimonial: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   designation: PropTypes.string.isRequired,
@@ -62,11 +61,14 @@ const FeedbacksComponent = () => {
         </motion.div>
       </div>
 
-      <div className={`${styles.paddingX} -mt-stack-2xl flex flex-wrap justify-center gap-stack-lg pb-stack-xl`}>
-        {testimonials.map((testimonial, index) => (
-          <FeedbackCard key={testimonial.name} index={index} {...testimonial} />
+      <motion.div
+        variants={staggerContainer(motionTokens.stagger)}
+        className={`${styles.paddingX} -mt-stack-2xl flex flex-wrap justify-center gap-stack-lg pb-stack-xl`}
+      >
+        {testimonials.map((testimonial) => (
+          <FeedbackCard key={testimonial.name} {...testimonial} />
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

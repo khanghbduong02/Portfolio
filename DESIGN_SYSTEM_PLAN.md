@@ -33,9 +33,9 @@
 
 ### 4. Make Motion Intentional
 
-- Replace generic spring defaults with explicit cubic-bezier transitions where appropriate.
-- Use short stagger intervals for related content and avoid long index-based delays on lower project cards.
-- Keep motion only where it reveals hierarchy, confirms an action, or explains the CNN visualization.
+- [x] Replace generic spring defaults with explicit cubic-bezier transitions where appropriate.
+- [x] Use short stagger intervals for related content and avoid long index-based delays on lower project cards.
+- [x] Keep motion that supports hierarchy, interaction, or the portfolio's visual identity; the animated technology balls, Earth, and star field are intentional ambient motion.
 - Respect `prefers-reduced-motion` for scrolling indicators, canvas effects, and entrance animations.
 
 ### 5. Improve Interaction Feedback

@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion'
 
-import { styles } from '../styles'
+import { motion as motionTokens, styles } from '../styles'
 import { github, globe } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
-import { fadeIn, textVariant } from '../utils/motion'
+import { fadeIn, staggerContainer, textVariant } from '../utils/motion'
 
-const ProjectCard = ({ index, name, description, tags, image, coverLabel, source_code_link, web_url }) => {
+const ProjectCard = ({ name, description, tags, image, coverLabel, source_code_link, web_url }) => {
   return (
     <motion.div
-      variants={fadeIn('up', 'spring', index * 0.5, 0.75)}
+      variants={fadeIn('up', 0, 0.75)}
       className='flex w-full sm:w-[360px]'
     >
       <article className='interactive-card flex w-full flex-col p-stack-md'>
@@ -83,7 +83,6 @@ const ProjectCard = ({ index, name, description, tags, image, coverLabel, source
 }
 
 ProjectCard.propTypes = {
-  index: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.shape({
@@ -106,18 +105,21 @@ const ProjectComponent = () => {
 
       <div className='w-full flex'>
         <motion.p
-          variants={fadeIn("", "", 0.1, 1)}
+          variants={fadeIn("", 0.1, 1)}
           className='mt-stack-sm mx-auto max-w-4xl text-center text-body-lg text-muted'
         >
           These projects showcase my skills and experience through real-world work. Each includes a concise overview and, where available, a live demo or source repository.
         </motion.p>
       </div>
 
-      <div className='mt-stack-2xl mx-auto flex flex-wrap items-stretch justify-center gap-stack-lg'>
+      <motion.div
+        variants={staggerContainer(motionTokens.stagger)}
+        className='mt-stack-2xl mx-auto flex flex-wrap items-stretch justify-center gap-stack-lg'
+      >
         {projects.map((project, index) => (
-          <ProjectCard key={`project-${index}`} index={index} {...project} />
+          <ProjectCard key={`project-${index}`} {...project} />
         ))}
-      </div>
+      </motion.div>
     </>
   )
 }
