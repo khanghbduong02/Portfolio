@@ -10,12 +10,12 @@
 
 ### 1. Define the Design System
 
-- Create semantic color tokens for page background, surfaces, primary text, muted text, borders, focus, and one intentional accent color.
-- Decide whether violet is a deliberate part of Khang's personal brand. If not, replace the current violet gradients and glows with the chosen accent treatment.
-- Define a spacing scale and use it for section padding, card padding, gaps, and paragraph margins.
-- Limit radii to three values: controls, cards, and fully round media.
-- Define a type scale with display, section title, card title, body, metadata, and label styles, including matching line heights and font weights.
-- Define standard motion durations and cubic-bezier curves, plus a reduced-motion policy.
+- [x] Create semantic color tokens for page background, surfaces, primary text, muted text, borders, focus, and one intentional accent color.
+- [x] Decide whether violet is a deliberate part of Khang's personal brand. If not, replace the current violet gradients and glows with the chosen accent treatment.
+- [x] Define a spacing scale and use it for section padding, card padding, gaps, and paragraph margins.
+- [x] Limit radii to three values: controls, cards, and fully round media.
+- [x] Define a type scale with display, section title, card title, body, metadata, and label styles, including matching line heights and font weights.
+- [x] Define standard motion durations and cubic-bezier curves, plus a reduced-motion policy.
 
 ### 2. Repair the Hero
 
@@ -36,14 +36,16 @@
 - [x] Replace generic spring defaults with explicit cubic-bezier transitions where appropriate.
 - [x] Use short stagger intervals for related content and avoid long index-based delays on lower project cards.
 - [x] Keep motion that supports hierarchy, interaction, or the portfolio's visual identity; the animated technology balls, Earth, and star field are intentional ambient motion.
-- Respect `prefers-reduced-motion` for scrolling indicators, canvas effects, and entrance animations.
+- [x] Add consistent section-reveal effects and lazy-mount the interactive technology systems when the Technologies section becomes visible.
+- [ ] Respect `prefers-reduced-motion` for scrolling indicators, canvas effects, and entrance animations.
 
 ### 5. Improve Interaction Feedback
 
-- Disable the contact submit button while EmailJS is sending and expose a clear busy state.
-- Replace blocking alerts with inline success and error feedback that is announced to assistive technology.
-- Preserve the working project, GitHub, LinkedIn, email, employer, and CNN restart links.
-- Do not add skeleton screens for bundled static portfolio content; reserve them for future fetched data.
+- [x] Disable the contact submit button while EmailJS is sending and expose a clear busy state.
+- [x] Replace blocking alerts with inline success and error feedback that is announced to assistive technology.
+- [x] Preserve the working project, GitHub, LinkedIn, email, employer, and CNN restart links.
+- [x] Provide focusable, pause-on-hover/focus controls for the interactive technology systems.
+- [x] Do not add skeleton screens for bundled static portfolio content; reserve them for future fetched data.
 
 ### 6. Refine Content and Accessibility
 

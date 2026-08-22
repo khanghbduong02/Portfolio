@@ -15,6 +15,7 @@ const ContactComponent = () => {
     message: ''
   })
   const [loading, setLoading] = useState(false)
+  const [submissionStatus, setSubmissionStatus] = useState(null)
   const canvasRef = useRef(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -39,37 +40,38 @@ const ContactComponent = () => {
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm({...form, [name]: value })
-
+    setSubmissionStatus(null)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    if (loading) return
+
     setLoading(true)
+    setSubmissionStatus(null)
 
-    emailjs.send(
-      'service_mn3qg6u',
-      'template_frt91ss',
-      {
-        from_name: form.name,
-        to_name: 'Khang',
-        from_email: form.email,
-        to_email: 'huynhbaokhangduong@gmail.com',
-        message: form.message
-      },
-      '2OuPUN0DQ1JfVciGA'
-    )
-    .then(() => {
-      setLoading(false)
-      alert('Thank you so much! I will get back to you as soon as possible.')
-      
+    try {
+      await emailjs.send(
+        'service_mn3qg6u',
+        'template_frt91ss',
+        {
+          from_name: form.name,
+          to_name: 'Khang',
+          from_email: form.email,
+          to_email: 'huynhbaokhangduong@gmail.com',
+          message: form.message
+        },
+        '2OuPUN0DQ1JfVciGA'
+      )
+
       setForm({ name: '', email: '', message: '' })
-    }, (error) => {
+      setSubmissionStatus({ type: 'success', message: 'Thank you so much! I will get back to you as soon as possible.' })
+    } catch (error) {
+      console.error('EmailJS send failed:', error?.status ?? 'unknown', error?.text ?? error)
+      setSubmissionStatus({ type: 'error', message: 'Something when wrong.' })
+    } finally {
       setLoading(false)
-
-      console.log(error)
-
-      alert('Something when wrong.')
-    })
+    }
   }
 
   return (
@@ -118,6 +120,7 @@ const ContactComponent = () => {
         <form
           ref={formRef}
           onSubmit={handleSubmit}
+          aria-busy={loading}
           className='mt-stack-base flex flex-col gap-stack-base'
         >
           <label className='flex flex-col'>
@@ -157,9 +160,20 @@ const ContactComponent = () => {
           <button
             type='submit'
             className='action-button w-full'
+            disabled={loading}
           >
+            {loading && <span className='action-button__spinner' aria-hidden='true' />}
             {loading ? 'Sending...' : 'Send'}
           </button>
+          {submissionStatus && (
+            <p
+              className={`form-status form-status--${submissionStatus.type}`}
+              role={submissionStatus.type === 'error' ? 'alert' : 'status'}
+              aria-live={submissionStatus.type === 'error' ? 'assertive' : 'polite'}
+            >
+              {submissionStatus.message}
+            </p>
+          )}
         </form>
       </motion.div>
       

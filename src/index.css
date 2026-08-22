@@ -126,6 +126,45 @@ body {
   object-fit: contain;
 }
 
+.action-button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.action-button__spinner {
+  animation: action-button-spinner 0.72s linear infinite;
+  border: 2px solid rgb(var(--color-content) / 0.36);
+  border-radius: var(--radius-round);
+  border-top-color: rgb(var(--color-content));
+  height: 1rem;
+  width: 1rem;
+}
+
+@keyframes action-button-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-status {
+  border: 1px solid rgb(var(--color-line));
+  border-radius: var(--radius-control);
+  color: rgb(var(--color-content));
+  font-size: 0.875rem;
+  line-height: 1.5;
+  padding: var(--space-3) var(--space-4);
+}
+
+.form-status--success {
+  background: rgb(var(--color-accent) / 0.1);
+  border-color: rgb(var(--color-accent) / 0.5);
+}
+
+.form-status--error {
+  background: rgb(248 113 113 / 0.1);
+  border-color: rgb(248 113 113 / 0.55);
+}
+
 .form-field {
   width: 100%;
   border: 1px solid rgb(var(--color-line));
@@ -150,7 +189,7 @@ body {
 }
 
 .interactive-card:hover,
-.action-button:hover {
+.action-button:not(:disabled):hover {
   transform: translateY(-2px);
   border-color: rgb(var(--color-accent) / 0.7);
   background: rgb(var(--color-surface-raised));
