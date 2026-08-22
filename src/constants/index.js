@@ -234,6 +234,50 @@ const technologies = [
   },
 ];
 
+const technologyGroups = [
+  {
+    title: "Machine Learning & Data",
+    skills: [
+      { name: "Python", evidence: "featured", orbit: 3 },
+      { name: "PyTorch", evidence: "strong", orbit: 0 },
+      { name: "Scikit Learn", evidence: "strong", orbit: 1 },
+      { name: "SQL", evidence: "strong", orbit: 2 },
+      { name: "Jupyter", evidence: "working", orbit: 4 },
+      { name: "MySQL", evidence: "working", orbit: 5 },
+      { name: "MongoDB", evidence: "foundation", orbit: 6 },
+    ],
+  },
+  {
+    title: "Web Applications",
+    skills: [
+      { name: "React JS", evidence: "featured", orbit: 3 },
+      { name: "JavaScript", evidence: "strong", orbit: 0 },
+      { name: "Django", evidence: "strong", orbit: 1 },
+      { name: "Flask", evidence: "strong", orbit: 2 },
+      { name: "Tailwind CSS", evidence: "working", orbit: 4 },
+      { name: "HTML", evidence: "foundation", orbit: 5 },
+      { name: "CSS", evidence: "foundation", orbit: 6 },
+    ],
+  },
+  {
+    title: "Programming & Tooling",
+    skills: [
+      { name: "Git", evidence: "strong", orbit: 0 },
+      { name: "Docker", evidence: "working", orbit: 1 },
+      { name: "Java", evidence: "working", orbit: 2 },
+      { name: "C++", evidence: "foundation", orbit: 3 },
+    ],
+  },
+  {
+    title: "Interactive Systems",
+    skills: [
+      { name: "Godot", evidence: "strong", orbit: 0 },
+      { name: "Unity", evidence: "working", orbit: 1 },
+      { name: "Three JS", evidence: "working", orbit: 2 },
+    ],
+  },
+];
+
 const projects = [
   {
     name: "Real-Time Failure Detection for 3D Printers",
@@ -456,4 +500,4 @@ const testimonials = [
   },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { services, technologies, technologyGroups, experiences, testimonials, projects };

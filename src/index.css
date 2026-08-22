@@ -17,6 +17,12 @@
   --color-accent: 53 211 172;
   --color-accent-strong: 31 163 129;
   --color-focus: 53 211 172;
+  --color-star-core: 255 253 237;
+  --color-star-mid: 255 220 127;
+  --color-star-edge: 238 166 53;
+  --color-planet-light: 177 184 180;
+  --color-planet-mid: 92 99 96;
+  --color-planet-dark: 43 48 46;
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -148,6 +154,499 @@ body {
   transform: translateY(-2px);
   border-color: rgb(var(--color-accent) / 0.7);
   background: rgb(var(--color-surface-raised));
+}
+
+.skill-map__field {
+  border-bottom: 1px solid rgb(var(--color-line));
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.skill-map__field::before {
+  background-image:
+    linear-gradient(rgb(var(--color-line) / 0.24) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-line) / 0.24) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  content: '';
+  inset: 0;
+  opacity: 0.45;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.skill-map__group {
+  display: flex;
+  flex-direction: column;
+  min-height: 40rem;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-map__group:nth-child(odd) {
+  border-right: 1px solid rgb(var(--color-line));
+}
+
+.skill-map__group:nth-child(n + 3) {
+  border-top: 1px solid rgb(var(--color-line));
+}
+
+.skill-map__orbit {
+  flex: 1 1 auto;
+  min-height: 32rem;
+  isolation: isolate;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-map__core {
+  color: rgb(var(--color-content));
+  height: 0;
+  left: 50%;
+  position: absolute;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  z-index: 3;
+}
+
+.skill-map__star {
+  align-items: center;
+  background: radial-gradient(circle at 34% 30%, rgb(var(--color-star-core)) 0%, rgb(var(--color-star-mid)) 30%, rgb(var(--color-star-edge)) 100%);
+  border: 1px solid rgb(var(--color-star-core) / 0.75);
+  border-radius: var(--radius-round);
+  box-shadow:
+    0 0 0.7rem rgb(var(--color-star-mid) / 0.95),
+    0 0 1.8rem rgb(var(--color-star-mid) / 0.5),
+    0 0 3.5rem rgb(var(--color-star-edge) / 0.24);
+  display: flex;
+  height: 3.75rem;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translate(-50%, -50%);
+  width: 3.75rem;
+}
+
+.skill-map__star-icon {
+  color: rgb(var(--color-canvas));
+  height: 1.6rem;
+  position: relative;
+  width: 1.6rem;
+  z-index: 1;
+}
+
+.skill-map__star::after {
+  border: 1px solid rgb(var(--color-star-mid) / 0.48);
+  border-radius: var(--radius-round);
+  content: '';
+  inset: -0.6rem;
+  pointer-events: none;
+  position: absolute;
+}
+
+.skill-map__group-title {
+  background-color: rgb(var(--color-muted) / 0.1);
+  background-image:
+    radial-gradient(circle at 4% 18%, rgb(var(--color-star-core) / 0.92) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 8% 54%, rgb(var(--color-star-core) / 0.7) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 12% 78%, rgb(var(--color-star-core) / 0.86) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 16% 34%, rgb(var(--color-star-core) / 0.98) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 21% 10%, rgb(var(--color-star-core) / 0.68) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 25% 62%, rgb(var(--color-star-core) / 0.88) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 30% 42%, rgb(var(--color-star-core) / 0.74) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 34% 86%, rgb(var(--color-star-core) / 0.94) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 39% 24%, rgb(var(--color-star-core) / 0.78) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 43% 72%, rgb(var(--color-star-core) / 0.96) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 48% 48%, rgb(var(--color-star-core) / 0.72) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 53% 14%, rgb(var(--color-star-core) / 0.9) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 57% 88%, rgb(var(--color-star-core) / 0.68) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 61% 58%, rgb(var(--color-star-core) / 0.86) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 66% 30%, rgb(var(--color-star-core) / 0.76) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 70% 80%, rgb(var(--color-star-core) / 0.94) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 75% 44%, rgb(var(--color-star-core) / 0.82) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 80% 16%, rgb(var(--color-star-core) / 0.98) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 84% 68%, rgb(var(--color-star-core) / 0.74) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 89% 36%, rgb(var(--color-star-core) / 0.9) 0 1.1px, transparent 1.8px),
+    radial-gradient(circle at 94% 82%, rgb(var(--color-star-core) / 0.72) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 97% 54%, rgb(var(--color-star-core) / 0.86) 0 1px, transparent 1.7px),
+    radial-gradient(circle at 2% 46%, rgb(var(--color-star-core) / 0.8) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 7% 88%, rgb(var(--color-star-core) / 0.94) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 14% 6%, rgb(var(--color-star-core) / 0.74) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 19% 52%, rgb(var(--color-star-core) / 0.9) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 23% 90%, rgb(var(--color-star-core) / 0.82) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 32% 18%, rgb(var(--color-star-core) / 0.96) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 38% 58%, rgb(var(--color-star-core) / 0.78) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 46% 8%, rgb(var(--color-star-core) / 0.88) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 52% 92%, rgb(var(--color-star-core) / 0.74) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 60% 38%, rgb(var(--color-star-core) / 0.94) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 67% 6%, rgb(var(--color-star-core) / 0.8) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 73% 58%, rgb(var(--color-star-core) / 0.9) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 78% 8%, rgb(var(--color-star-core) / 0.76) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 83% 90%, rgb(var(--color-star-core) / 0.96) 0 0.9px, transparent 1.6px),
+    radial-gradient(circle at 90% 52%, rgb(var(--color-star-core) / 0.78) 0 0.7px, transparent 1.4px),
+    radial-gradient(circle at 98% 10%, rgb(var(--color-star-core) / 0.88) 0 0.8px, transparent 1.5px),
+    radial-gradient(circle at 99% 94%, rgb(var(--color-star-core) / 0.74) 0 0.7px, transparent 1.4px);
+  background-clip: text;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: transparent;
+  font-size: clamp(1.6rem, 3.4vw, 2.9rem);
+  font-weight: 900;
+  left: 50%;
+  letter-spacing: 0;
+  line-height: 0.96;
+  overflow: visible;
+  position: absolute;
+  pointer-events: none;
+  text-align: center;
+  text-transform: uppercase;
+  top: 27%;
+  transform: translate(-50%, -50%);
+  white-space: normal;
+  width: calc(100% - var(--space-6));
+  z-index: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.skill-orbit {
+  aspect-ratio: 1;
+  height: var(--orbit-size);
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: var(--orbit-size);
+  z-index: 2;
+}
+
+.skill-orbit__trajectory {
+  border: 1px dashed rgb(var(--color-accent) / 0.22);
+  border-radius: var(--radius-round);
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.skill-orbit__carrier {
+  animation: skill-orbit-turn var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+  inset: 0;
+  position: absolute;
+}
+
+.skill-orbit.is-paused .skill-orbit__carrier,
+.skill-orbit.is-paused .skill-node__body,
+.skill-orbit.is-paused .skill-node__orb::before,
+.skill-orbit:has(.skill-node:hover) .skill-orbit__carrier,
+.skill-orbit:has(.skill-node:hover) .skill-node__body,
+.skill-orbit:has(.skill-node:hover) .skill-node__orb::before {
+  animation-play-state: paused;
+}
+
+.skill-node {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  left: 50%;
+  margin: 0;
+  min-width: 4.5rem;
+  padding: 0;
+  position: absolute;
+  pointer-events: auto;
+  top: 0;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.skill-node__body {
+  align-items: center;
+  animation: skill-orbit-counter var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  position: relative;
+  will-change: transform;
+}
+
+.skill-node__orb {
+  align-items: center;
+  aspect-ratio: 1;
+  background: radial-gradient(circle at 50% 50%, rgb(var(--color-planet-mid)) 0%, rgb(var(--color-planet-dark)) 76%);
+  border: 1px solid rgb(var(--color-planet-light) / 0.5);
+  border-radius: var(--radius-round);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    inset 0 0 1rem rgb(0 0 0 / 0.35),
+    0 0 0 0.2rem rgb(var(--color-canvas));
+  transition:
+    background-color var(--duration-standard) var(--ease-standard),
+    border-color var(--duration-standard) var(--ease-standard),
+    transform var(--duration-standard) var(--ease-standard);
+  width: var(--skill-node-size);
+}
+
+.skill-node__orb::before {
+  animation: skill-orbit-light var(--orbit-duration) linear infinite;
+  animation-delay: var(--orbit-delay);
+  background:
+    radial-gradient(circle at 50% 100%, rgb(var(--color-star-core) / 0.34) 0%, rgb(var(--color-star-mid) / 0.20) 24%, transparent 54%),
+    radial-gradient(circle at 50% 0%, rgb(0 0 0 / 0.62) 2%, transparent 54%);
+  content: '';
+  inset: -24%;
+  pointer-events: none;
+  position: absolute;
+  will-change: transform;
+  z-index: 0;
+}
+
+.skill-node__icon {
+  height: 46%;
+  object-fit: contain;
+  position: relative;
+  width: 46%;
+  z-index: 1;
+}
+
+.skill-node__label {
+  background: rgb(var(--color-canvas) / 0.9);
+  border: 1px solid rgb(var(--color-star-mid) / 0.5);
+  color: rgb(var(--color-content));
+  font-size: 0.75rem;
+  font-weight: 600;
+  left: 50%;
+  line-height: 1.25;
+  max-width: 7.5rem;
+  opacity: 0;
+  padding: 0.1rem var(--space-2);
+  border-radius: var(--radius-round);
+  pointer-events: none;
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  text-align: center;
+  transform: translate(-50%, -0.25rem);
+  transition:
+    opacity var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+  z-index: 4;
+}
+
+.skill-node.is-active .skill-node__label,
+.skill-node:hover .skill-node__label,
+.skill-node:focus-visible .skill-node__label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.skill-node:focus-visible {
+  outline: none;
+}
+
+.skill-node:focus-visible .skill-node__orb {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 4px;
+}
+
+.skill-node--featured {
+  --skill-node-size: clamp(4.75rem, 6.5vw, 5.25rem);
+}
+
+.skill-node--strong {
+  --skill-node-size: clamp(3.75rem, 5vw, 4rem);
+}
+
+.skill-node--working {
+  --skill-node-size: clamp(3rem, 4vw, 3.25rem);
+}
+
+.skill-node--foundation {
+  --skill-node-size: clamp(2.5rem, 3vw, 2.75rem);
+}
+
+.skill-node:hover .skill-node__orb {
+  border-color: rgb(var(--color-planet-light) / 0.9);
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.skill-map__planet-controls {
+  align-content: flex-start;
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: center;
+  min-height: 7rem;
+  padding: var(--space-4) var(--space-5);
+  position: relative;
+  z-index: 3;
+}
+
+.skill-map__planet-button {
+  background: rgb(var(--color-canvas) / 0.72);
+  border: 1px solid rgb(var(--color-line));
+  border-radius: var(--radius-round);
+  color: rgb(var(--color-muted));
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 0.35rem var(--space-3);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.skill-map__planet-button:hover,
+.skill-map__planet-button:focus-visible,
+.skill-map__planet-button.is-active {
+  background: rgb(var(--color-star-mid) / 0.12);
+  border-color: rgb(var(--color-star-mid) / 0.7);
+  color: rgb(var(--color-content));
+  outline: none;
+}
+
+.skill-orbit--alpha {
+  --orbit-size: 21rem;
+}
+
+.skill-orbit--beta {
+  --orbit-size: 19rem;
+}
+
+.skill-orbit--gamma {
+  --orbit-size: 17rem;
+}
+
+.skill-orbit--delta {
+  --orbit-size: 15rem;
+}
+
+.skill-orbit--epsilon {
+  --orbit-size: 13rem;
+}
+
+.skill-orbit--zeta {
+  --orbit-size: 11rem;
+}
+
+.skill-orbit--eta {
+  --orbit-size: 9rem;
+}
+
+@keyframes skill-orbit-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes skill-orbit-counter {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes skill-orbit-light {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .skill-map__field {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-map__group {
+    min-height: 36rem;
+  }
+
+  .skill-map__group:nth-child(odd) {
+    border-right: 0;
+  }
+
+  .skill-map__group + .skill-map__group {
+    border-top: 1px solid rgb(var(--color-line));
+  }
+
+  .skill-map__orbit {
+    min-height: 28rem;
+  }
+
+  .skill-map__group-title {
+    font-size: clamp(1.15rem, 5.2vw, 1.5rem);
+    left: 50%;
+    top: 27%;
+    width: calc(100% - var(--space-5));
+  }
+
+  .skill-map__planet-controls {
+    min-height: 6.5rem;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .skill-node--featured {
+    --skill-node-size: 3.5rem;
+  }
+
+  .skill-node--strong {
+    --skill-node-size: 3rem;
+  }
+
+  .skill-node--working {
+    --skill-node-size: 2.65rem;
+  }
+
+  .skill-node--foundation {
+    --skill-node-size: 2.35rem;
+  }
+
+  .skill-orbit--alpha {
+    --orbit-size: 15rem;
+  }
+
+  .skill-orbit--beta {
+    --orbit-size: 13.75rem;
+  }
+
+  .skill-orbit--gamma {
+    --orbit-size: 12.5rem;
+  }
+
+  .skill-orbit--delta {
+    --orbit-size: 11.25rem;
+  }
+
+  .skill-orbit--epsilon {
+    --orbit-size: 10rem;
+  }
+
+  .skill-orbit--zeta {
+    --orbit-size: 8.75rem;
+  }
+
+  .skill-orbit--eta {
+    --orbit-size: 7.5rem;
+  }
 }
 
 :focus-visible {
