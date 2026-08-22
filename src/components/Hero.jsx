@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
-import { styles } from '../styles'
+import { motion as motionTokens, styles } from '../styles'
 import NeuralNetworkCanvas, { IntroOverlay, RestartButton } from './canvas/NeuralNetwork'
 
 const Hero = () => {
@@ -34,19 +34,19 @@ const Hero = () => {
   }
 
   return (
-    <section className='w-full h-dvh flex flex-col overflow-hidden relative z-0'>
+    <section className='relative z-0 flex h-dvh w-full flex-col overflow-hidden'>
       {/* hero text */}
-      <div className={`${styles.paddingX} inset-0 max-w-7xl max-h-[35vh] mx-auto flex flex-row items-start gap-5 mt-20`}>
-        <div className='flex flex-col justify-center items-center mt-5'>
-          <div className='w-5 h-5 rounded-full bg-[#915eff]' />
-          <div className='w-1 sm:h-80 h-40 violet-gradient' />
+      <div className={`${styles.paddingX} mx-auto flex w-full max-w-7xl shrink-0 flex-row items-start gap-stack-md pt-24 md:pt-28`}>
+        <div className='mt-stack-xs flex flex-col items-center justify-center'>
+          <div className='h-4 w-4 rounded-round bg-accent' />
+          <div className='h-32 w-px bg-accent/60 sm:h-48' />
         </div>
         <div>
-          <h1 className={`${styles.heroHeadText} text-white`}>
+          <h1 className={styles.heroHeadText}>
             Hi, I&apos;m
-            <span className='text-[#915eff]'> Khang</span>
+            <span className='text-accent'> Khang</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-2 text-white-100`}>
+          <p className={`${styles.heroSubText} mt-stack-sm max-w-5xl`}>
             I develop innovative software solutions, specializing in machine learning,
             web-based applications, and automation, with a strong foundation in
             programming languages and quality assurance.
@@ -78,11 +78,10 @@ const Hero = () => {
                 }}
               >
                 <p style={{
-                  color:         '#c4b5fd',
-                  fontSize:      'clamp(13px, 1.6vw, 28px)',
+                  color:         'rgb(var(--color-content))',
+                  fontSize:      'clamp(0.875rem, 1.4vw, 1.25rem)',
                   fontWeight:    600,
-                  letterSpacing: '0.08em',
-                  textShadow:    '0 0 14px #915eff',
+                  letterSpacing: 0,
                   margin:        0,
                   whiteSpace:    'nowrap',
                   overflow:      'hidden',
@@ -91,10 +90,10 @@ const Hero = () => {
                   Pixels → Patterns → &quot;It&apos;s Khang!&quot;
                 </p>
                 <p style={{
-                  color:         '#a78bfa',
-                  fontSize:      'clamp(10px, 1.1vw, 18px)',
-                  letterSpacing: '0.08em',
-                  marginTop:     '4px',
+                  color:         'rgb(var(--color-muted))',
+                  fontSize:      'clamp(0.75rem, 1vw, 0.875rem)',
+                  letterSpacing: 0,
+                  marginTop:     '0.25rem',
                 }}>
                   drag to rotate
                 </p>
@@ -105,13 +104,13 @@ const Hero = () => {
       </div>
 
       {/* scroll indicator */}
-      <div className='w-full flex justify-center items-center py-3'>
-        <a href='#about'>
-          <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
+      <div className='flex w-full items-center justify-center py-stack-sm'>
+        <a href='#about' aria-label='Scroll to overview'>
+          <div className='flex h-14 w-8 items-start justify-center rounded-round border-2 border-line bg-surface p-2'>
             <motion.div
               animate={{ y: [0, 24, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-              className='w-3 h-3 rounded-full bg-secondary mb-1'
+              transition={{ duration: 1.5, ease: motionTokens.easing.enter, repeat: Infinity, repeatType: 'loop' }}
+              className='mb-1 h-2.5 w-2.5 rounded-round bg-accent'
             />
           </div>
         </a>

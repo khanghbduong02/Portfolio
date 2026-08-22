@@ -4,7 +4,7 @@
 
 - [x] Create WebP copies for all raster assets while retaining original source files.
 - [x] Prefer WebP for application imagery and retain SVG for vector icons.
-- [ ] Establish shared design tokens before changing individual components.
+- [x] Establish shared design tokens before changing individual components.
 
 ## Implementation Order
 
@@ -19,10 +19,10 @@
 
 ### 2. Repair the Hero
 
-- Resolve the desktop collision between the summary copy and FaceID prompt.
-- Keep the FaceID/CNN interaction because it demonstrates machine-learning work directly.
-- Remove the sparkle from the prompt and reduce the decorative glow, ripple, and hover treatment.
-- Use the new type and spacing tokens for the hero title, summary, prompt, controls, and scroll indicator.
+- [x] Resolve the desktop collision between the summary copy and FaceID prompt.
+- [x] Keep the FaceID/CNN interaction because it demonstrates machine-learning work directly.
+- [x] Remove the sparkle from the prompt and reduce the decorative glow, ripple, and hover treatment.
+- [x] Use the new type and spacing tokens for the hero title, summary, prompt, controls, and scroll indicator.
 
 ### 3. Standardize Shared Components
 

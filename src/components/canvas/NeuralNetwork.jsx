@@ -8,7 +8,7 @@ import { khangPhoto } from '../../assets'
 
 // ── palette ───────────────────────────────────────────────────────────────────
 const C_INPUT = new THREE.Color('#00d4ff')
-const C_CONV  = new THREE.Color('#915eff')
+const C_CONV  = new THREE.Color('#35d3ac')
 const C_POOL  = new THREE.Color('#ff6b9d')
 const C_FC    = new THREE.Color('#ffb347')
 const C_OUT   = new THREE.Color('#ffffff')
@@ -262,7 +262,6 @@ function DelayedLabel({ position, label, isKhang, delay }) {
         fontSize:   isKhang ? 'clamp(12px, 1.8vw, 36px)' : 'clamp(9px, 1.4vw, 28px)',
         fontWeight: isKhang ? 700 : 500,
         whiteSpace: 'nowrap',
-        textShadow: isKhang ? '0 0 10px #915eff' : 'none',
         opacity:    isKhang ? 1.0 : 0.3,
         fontFamily: 'monospace',
       }}>{label}</span>
@@ -703,7 +702,7 @@ const NeuralNetworkCanvas = ({ phase }) => (
   >
     <ambientLight intensity={0.55} />
     <pointLight position={[6, 6, 6]}    intensity={1.2} />
-    <pointLight position={[-6, -4, -6]} intensity={0.45} color="#915eff" />
+    <pointLight position={[-6, -4, -6]} intensity={0.45} color="#35d3ac" />
     <directionalLight position={[0, 5, 3]} intensity={0.55} />
     <CameraFitter />
     <CNNScene started={phase === 'cnn'} />
@@ -715,13 +714,7 @@ const NeuralNetworkCanvas = ({ phase }) => (
 
 // ── Intro overlay ─────────────────────────────────────────────────────────────
 export function IntroOverlay({ onStart, visible }) {
-  const [ripple, setRipple]     = useState(0)
   const [morphing, setMorphing] = useState(false)
-
-  useEffect(() => {
-    const id = setInterval(() => setRipple(r => r + 1), 1400)
-    return () => clearInterval(id)
-  }, [])
 
   // Reset morph state whenever the overlay becomes visible again (e.g. after restart),
   // otherwise the photo would stay faded/squared from the previous run.
@@ -732,7 +725,7 @@ export function IntroOverlay({ onStart, visible }) {
   const handleClick = () => {
     if (morphing) return
     setMorphing(true)
-    setTimeout(() => onStart?.(), 380)
+    setTimeout(() => onStart?.(), 500)
   }
 
   if (!visible) return null
@@ -746,77 +739,47 @@ export function IntroOverlay({ onStart, visible }) {
       gap: '1rem',
     }}>
       <style>{`
-        @keyframes ripple-out {
-          0%   { transform: scale(1);   opacity: 0.65; }
-          100% { transform: scale(2.2); opacity: 0; }
-        }
-        .nn-ripple {
-          position: absolute; inset: 0;
-          border-radius: 50%;
-          border: 2px solid #915eff;
-          animation: ripple-out 1.4s ease-out forwards;
-          pointer-events: none;
-        }
-        .nn-photo-wrap { transition: transform 0.2s, box-shadow 0.2s; }
-        .nn-photo-wrap:hover {
-          transform: scale(1.05);
-          box-shadow: 0 0 32px #915effaa !important;
-        }
         @keyframes morph-to-square {
           0%   { border-radius: 50%; transform: scale(1);    opacity: 1; }
           55%  { border-radius: 6%;  transform: scale(0.9);  opacity: 1; }
           100% { border-radius: 2%;  transform: scale(0.55); opacity: 0; }
         }
         .nn-photo-wrap.morphing {
-          animation: morph-to-square 0.55s cubic-bezier(.6,.05,.4,1) forwards;
+          animation: morph-to-square var(--duration-enter) var(--ease-enter) forwards;
         }
-        .nn-text-fade.morphing { animation: fade-out 0.35s forwards; }
+        .nn-text-fade.morphing { animation: fade-out var(--duration-standard) var(--ease-exit) forwards; }
         @keyframes fade-out { to { opacity: 0; } }
       `}</style>
 
       {/* question — above, outside the image */}
-      <p className={`nn-text-fade ${morphing ? 'morphing' : ''}`} style={{
-        color: '#c4b5fd',
-        fontSize: 'clamp(14px, 2vw, 20px)',
-        fontWeight: 600,
-        letterSpacing: '0.04em',
-        textAlign: 'center',
-        textShadow: '0 0 14px #915eff',
+      <p className={`nn-text-fade max-w-[80vw] text-center text-body font-label text-content ${morphing ? 'morphing' : ''}`} style={{
         margin: 0,
         pointerEvents: 'none',
-        maxWidth: '80vw',
       }}>
         That&apos;s me — but how does FaceID know that?
       </p>
 
-      {/* ripple container + photo */}
-      <div style={{ position: 'relative', pointerEvents: 'auto' }}
-        onClick={handleClick}>
-        {/* ripple rings — hidden during morph */}
-        {!morphing && <div className="nn-ripple" key={ripple} />}
-
-        {/* circular photo — morphs into a square then fades as the 3D Input flies in */}
-        <div className={`nn-photo-wrap ${morphing ? 'morphing' : ''}`} style={{
+      <button
+        type='button'
+        aria-label='Show the FaceID neural network visualization'
+        className='group relative cursor-pointer border-0 bg-transparent p-0'
+        style={{ pointerEvents: 'auto' }}
+        onClick={handleClick}
+      >
+        {/* Circular photo morphs into a square as the 3D input enters. */}
+        <div className={`nn-photo-wrap overflow-hidden rounded-round border-2 border-accent transition-colors duration-fast ease-standard group-hover:border-accent-strong ${morphing ? 'morphing' : ''}`} style={{
           width:        'clamp(120px, min(80vw, 80vh), 260px)',
           height:       'clamp(120px, min(80vw, 80vh), 260px)',
-          borderRadius: '50%',
-          overflow:     'hidden',
-          border:       '3px solid #915eff',
-          boxShadow:    '0 0 20px #915eff88',
-          cursor:       'pointer',
           position:     'relative',
           zIndex:       1,
         }}>
           <img src={khangPhoto} alt="Khang"
             style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
         </div>
-      </div>
+      </button>
 
       {/* hint — below, outside the image */}
-      <p className={`nn-text-fade ${morphing ? 'morphing' : ''}`} style={{
-        color:         '#a78bfa',
-        fontSize:      'clamp(11px, 1.2vw, 14px)',
-        letterSpacing: '0.08em',
+      <p className={`nn-text-fade text-meta text-muted ${morphing ? 'morphing' : ''}`} style={{
         margin:        0,
         pointerEvents: 'none',
       }}>
@@ -832,36 +795,7 @@ export function RestartButton({ visible, onRestart }) {
   return (
     <button
       onClick={onRestart}
-      style={{
-        position:       'absolute',
-        bottom:         '16px',
-        left:           '50%',
-        transform:      'translateX(-50%)',
-        zIndex:         11,
-        pointerEvents:  'auto',
-        padding:        '6px 14px',
-        fontSize:       '12px',
-        fontFamily:     'monospace',
-        letterSpacing:  '0.08em',
-        color:          '#c4b5fd',
-        background:     'rgba(20, 12, 40, 0.55)',
-        border:         '1px solid #915eff',
-        borderRadius:   '999px',
-        cursor:         'pointer',
-        boxShadow:      '0 0 12px #915eff66',
-        backdropFilter: 'blur(4px)',
-        transition:     'transform 0.15s, box-shadow 0.15s, background 0.15s',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.transform  = 'translateX(-50%) scale(1.05)'
-        e.currentTarget.style.boxShadow  = '0 0 18px #915effaa'
-        e.currentTarget.style.background = 'rgba(40, 20, 70, 0.7)'
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.transform  = 'translateX(-50%) scale(1)'
-        e.currentTarget.style.boxShadow  = '0 0 12px #915eff66'
-        e.currentTarget.style.background = 'rgba(20, 12, 40, 0.55)'
-      }}
+      className='absolute bottom-4 left-1/2 z-[11] -translate-x-1/2 rounded-control border border-line bg-surface px-3.5 py-1.5 text-meta font-label text-content transition duration-fast ease-standard hover:-translate-y-0.5 hover:border-accent hover:bg-surface-raised'
     >
       ↻ run it again
     </button>

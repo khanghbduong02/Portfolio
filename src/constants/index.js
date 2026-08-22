@@ -97,7 +97,6 @@ const experiences = [
     title: "Software Engineer Intern",
     company_name: "NetApp, Inc.",
     icon: netapp,
-    iconBg: "#383E65",
     date: "Jun 2026 - Present",
     points: [
       "Engineered data pipelines that collect, clean, and validate hardware telemetry across hosts, controllers, RAID configurations, and drive protocols.",
@@ -110,7 +109,6 @@ const experiences = [
     title: "Web Developer & Webmaster",
     company_name: "Pho 316 Restaurant",
     icon: pho316,
-    iconBg: "#10372A",
     date: "Feb 2026 - Present",
     website_url: "https://pho316.com",
     points: [
@@ -125,7 +123,6 @@ const experiences = [
     title: "Software Engineer in Test - Performance Benchmarking",
     company_name: "NetApp, Inc.",
     icon: netapp,
-    iconBg: "#383E65",
     date: "Sep 2023 - Jun 2026",
     points: [
       "Designed YAML-driven testbeds for controller firmware validation across storage configurations.",
@@ -137,7 +134,6 @@ const experiences = [
     title: "Science Private Tutor",
     company_name: "D-Academy, Vietnam",
     icon: d_academy,
-    iconBg: "#383E56",
     date: "Sep 2020 - Jun 2021",
     points: [
       "Mathematics, Physics, and Chemistry to students preparing for graduation",
@@ -150,7 +146,6 @@ const experiences = [
     title: "Aerobic Gymnastics Professional Athlete",
     company_name: "Vietnam Gymnastics Federation, Vietnam",
     icon: vgf,
-    iconBg: "#383E56",
     date: "Jan 2006 - Feb 2017",
     points: [
       "Competed at national and international levels in Aerobic Gymnastics",

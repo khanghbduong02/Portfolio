@@ -14,12 +14,20 @@ const ExperienceCard = ({ experience }) => {
   return (
     <VerticalTimelineElement
       className='vertical-timeline-element--work'
-      contentStyle={{ background: '#1d1836', color: '#fff' }}
-      contentArrowStyle={{ borderRight: '7px solid #232631'}}
+      contentStyle={{
+        background: 'rgb(var(--color-surface))',
+        color: 'rgb(var(--color-content))',
+        border: '1px solid rgb(var(--color-line))',
+        boxShadow: 'var(--shadow-card)',
+      }}
+      contentArrowStyle={{ borderRight: '7px solid rgb(var(--color-surface))' }}
       textClassName='experience-timeline-content'
       date={experience.date}
       dateClassName='experience-timeline-date'
-      iconStyle={{ background: experience.iconBg }}
+      iconStyle={{
+        background: 'rgb(var(--color-surface-raised))',
+        border: '1px solid rgb(var(--color-line))',
+      }}
       icon={
         <div className='flex justify-center items-center w-full h-full'>
           {experience.icon ? (
@@ -79,7 +87,6 @@ ExperienceCard.propTypes = {
         PropTypes.element
     ]),
     iconLabel: PropTypes.string,
-    iconBg: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     website_url: PropTypes.string,
     points: PropTypes.arrayOf(PropTypes.string).isRequired

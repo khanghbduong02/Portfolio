@@ -4,13 +4,91 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: dark;
+  --font-sans: "Poppins", sans-serif;
+
+  --color-canvas: 17 23 21;
+  --color-surface: 26 35 32;
+  --color-surface-raised: 33 44 39;
+  --color-content: 246 247 242;
+  --color-muted: 183 194 187;
+  --color-line: 73 87 79;
+  --color-accent: 53 211 172;
+  --color-accent-strong: 31 163 129;
+  --color-focus: 53 211 172;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-page: clamp(1.5rem, 4vw, 4rem);
+  --space-section: clamp(3.5rem, 8vw, 7rem);
+
+  --radius-control: 0.5rem;
+  --radius-card: 0.75rem;
+  --radius-round: 9999px;
+
+  --duration-fast: 160ms;
+  --duration-standard: 280ms;
+  --duration-enter: 500ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.7, 0, 0.84, 0);
+
+  --shadow-card: 0 24px 64px -32px rgb(0 0 0 / 0.65);
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-sans);
+}
+
+html {
   scroll-behavior: smooth;
-  color-scheme: dark;
+}
+
+body {
+  min-width: 320px;
+  background: rgb(var(--color-canvas));
+  color: rgb(var(--color-content));
+}
+
+.hero-backdrop {
+  background-color: rgb(var(--color-canvas));
+  background-image:
+    linear-gradient(rgb(var(--color-accent) / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--color-accent) / 0.035) 1px, transparent 1px);
+  background-position: center;
+  background-size: 3rem 3rem;
+}
+
+:focus-visible {
+  outline: 2px solid rgb(var(--color-focus));
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 .hash-span {
@@ -33,20 +111,8 @@
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.violet-gradient {
-  background: #804dee;
-  background: linear-gradient(-90deg, #804dee 0%, rgba(60, 51, 80, 0) 100%);
-  background: -webkit-linear-gradient(
-    -90deg,
-    #804dee 0%,
-    rgba(60, 51, 80, 0) 100%
-  );
-}
-
 .green-pink-gradient {
-  background: "#00cea8";
-  background: linear-gradient(90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
-  background: -webkit-linear-gradient(-90.13deg, #00cea8 1.9%, #bf61ff 97.5%);
+  background: rgb(var(--color-line));
 }
 
 .orange-text-gradient {

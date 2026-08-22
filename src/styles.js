@@ -1,17 +1,32 @@
 const styles = {
-  paddingX: "sm:px-16 px-6",
-  paddingY: "sm:py-16 py-6",
-  padding: "sm:px-16 px-6 sm:py-16 py-10",
+  paddingX: "px-page",
+  paddingY: "py-section",
+  padding: "px-page py-section",
 
   heroHeadText:
-    "font-black text-white xl:text-[75px] lg:text-[65px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2",
+    "font-display text-content text-display mt-stack-xs",
   heroSubText:
-    "text-[#dfd9ff] font-medium xl:text-[26px] sm:text-[24px] xs:text-[20px] text-[16px] lg:leading-[40px]",
+    "text-muted font-body text-body-lg",
 
   sectionHeadText:
-    "text-white text-center font-black xl:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]",
+    "text-content text-center font-display text-section",
   sectionSubText:
-    "text-center sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider",
+    "text-center text-eyebrow text-muted font-label uppercase tracking-normal",
 };
 
-export { styles };
+const motion = {
+  duration: {
+    fast: 0.16,
+    standard: 0.28,
+    enter: 0.5,
+    exit: 0.2,
+  },
+  easing: {
+    standard: [0.2, 0, 0, 1],
+    enter: [0.16, 1, 0.3, 1],
+    exit: [0.7, 0, 0.84, 0],
+  },
+  stagger: 0.08,
+};
+
+export { motion, styles };
