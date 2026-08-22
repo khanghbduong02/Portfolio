@@ -67,9 +67,9 @@ const ExperienceCard = ({ experience }) => {
             target='_blank'
             rel='noopener noreferrer'
             aria-label={`Visit ${experience.company_name} website`}
-            className='flex w-full items-center justify-center gap-2 rounded-lg border border-white/20 bg-black-200 px-4 py-2 text-[13px] font-medium text-white transition-colors duration-200 hover:bg-white/10 sm:inline-flex sm:w-auto'
+            className='action-button w-full sm:w-auto'
           >
-            <img src={globe} alt='' aria-hidden='true' className='h-4 w-4 flex-shrink-0' />
+            <img src={globe} alt='' aria-hidden='true' className='action-button__icon' />
             Visit website
           </a>
         </div>

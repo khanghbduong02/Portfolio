@@ -34,6 +34,9 @@ module.exports = {
         "stack-sm": "var(--space-3)",
         "stack-md": "var(--space-5)",
         "stack-lg": "var(--space-8)",
+        "stack-base": "var(--space-6)",
+        "stack-xl": "var(--space-10)",
+        "stack-2xl": "var(--space-16)",
       },
       borderRadius: {
         control: "var(--radius-control)",

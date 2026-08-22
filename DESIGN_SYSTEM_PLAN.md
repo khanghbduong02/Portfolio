@@ -26,10 +26,10 @@
 
 ### 3. Standardize Shared Components
 
-- Replace 3D tilt cards with a consistent card pattern and a subtle focus or hover state.
-- Use one button treatment for project links, contact actions, and employer links.
-- Align icon sizes, icon-to-label gaps, borders, shadows, and hover behavior across those controls.
-- Apply the radius, type, spacing, and color tokens to service, project, testimonial, and contact components.
+- [x] Replace 3D tilt cards with a consistent card pattern and a subtle focus or hover state.
+- [x] Use one button treatment for project links, contact actions, and employer links.
+- [x] Align icon sizes, icon-to-label gaps, borders, shadows, and hover behavior across those controls.
+- [x] Apply the radius, type, spacing, and color tokens to service, project, testimonial, and contact components.
 
 ### 4. Make Motion Intentional
 

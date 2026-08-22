@@ -71,6 +71,85 @@ body {
   background-size: 3rem 3rem;
 }
 
+.surface-panel,
+.interactive-card {
+  border: 1px solid rgb(var(--color-line));
+  border-radius: var(--radius-card);
+  background: rgb(var(--color-surface));
+  box-shadow: var(--shadow-card);
+}
+
+.interactive-card {
+  width: 100%;
+  transition:
+    background-color var(--duration-standard) var(--ease-standard),
+    border-color var(--duration-standard) var(--ease-standard),
+    transform var(--duration-standard) var(--ease-standard);
+}
+
+.interactive-card:focus-within {
+  border-color: rgb(var(--color-accent));
+}
+
+.action-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 1px solid rgb(var(--color-line));
+  border-radius: var(--radius-control);
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-content));
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.5;
+  padding: 0.625rem 1rem;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-standard) var(--ease-standard),
+    border-color var(--duration-standard) var(--ease-standard),
+    transform var(--duration-standard) var(--ease-standard);
+}
+
+.action-button__icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
+
+.form-field {
+  width: 100%;
+  border: 1px solid rgb(var(--color-line));
+  border-radius: var(--radius-control);
+  background: rgb(var(--color-surface));
+  color: rgb(var(--color-content));
+  outline: none;
+  padding: var(--space-4) var(--space-6);
+  transition:
+    background-color var(--duration-standard) var(--ease-standard),
+    border-color var(--duration-standard) var(--ease-standard);
+}
+
+.form-field::placeholder {
+  color: rgb(var(--color-muted));
+  opacity: 1;
+}
+
+.form-field:focus {
+  border-color: rgb(var(--color-accent));
+  background: rgb(var(--color-surface-raised));
+}
+
+.interactive-card:hover,
+.action-button:hover {
+  transform: translateY(-2px);
+  border-color: rgb(var(--color-accent) / 0.7);
+  background: rgb(var(--color-surface-raised));
+}
+
 :focus-visible {
   outline: 2px solid rgb(var(--color-focus));
   outline-offset: 3px;
@@ -109,10 +188,6 @@ body {
     #434343,
     #000000
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-}
-
-.green-pink-gradient {
-  background: rgb(var(--color-line));
 }
 
 .orange-text-gradient {

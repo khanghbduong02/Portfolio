@@ -6,11 +6,6 @@ import github from "./github.webp";
 import globe from "./globe.svg";
 import menu from "./menu.svg";
 
-import datasci from "./service/datasci.webp";
-import ml from "./service/ml.webp";
-import software from "./service/software.webp";
-import analyst from "./service/analyst.webp";
-
 import cpp from "./tech/cpp.svg";
 import css from "./tech/css.webp";
 import django from "./tech/django.svg";
@@ -58,10 +53,6 @@ export {
   github,
   globe,
   menu,
-  datasci,
-  ml,
-  software,
-  analyst,
   cpp,
   css,
   django,

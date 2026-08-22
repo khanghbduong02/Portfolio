@@ -1,9 +1,4 @@
 import {
-  // Services
-  analyst,
-  software,
-  datasci,
-  ml,
   // Works
   netapp,
   d_academy,
@@ -76,19 +71,15 @@ export const navLinks = [
 const services = [
   {
     title: "Software Developer",
-    icon: software,
   },
   {
     title: "Data Analyst",
-    icon: analyst,
   },
   {
     title: "Data Scientist",
-    icon: datasci,
   },
   {
     title: "AI/ML Engineer",
-    icon: ml,
   },
 ];
 
