@@ -3,6 +3,95 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion as motionTokens, styles } from '../styles'
 import { fadeIn } from '../utils/motion'
 import { IntroOverlay, RestartButton } from './FaceIdIntro'
+import PropTypes from 'prop-types'
+
+// ── Ambient glitch ───────────────────────────────────────────────────────────
+const HERO_TEXT = "The architecture doesn't exist yet. I want to be the one who designs it, trains it from scratch, runs the ablations, and ships it."
+const HERO_CHARS = Array.from(HERO_TEXT)
+const NOISE_CHARS = '▓▒░▄▀■□!@#$%∑∆∇'
+const GLITCH_INDICES = HERO_CHARS.map((_, i) => i).filter(i => HERO_TEXT[i] !== ' ')
+
+function SignalNoiseEffect({ reduceMotion }) {
+  const [display, setDisplay] = useState(HERO_CHARS.slice())
+
+  useEffect(() => {
+    if (reduceMotion) return
+    let timeoutId
+    let mounted = true
+
+    const glitch = () => {
+      const count = Math.floor(Math.random() * 4) + 1
+      const pool = [...GLITCH_INDICES]
+      const corrupted = []
+      for (let k = 0; k < count; k++) {
+        if (!pool.length) break
+        corrupted.push(pool.splice(Math.floor(Math.random() * pool.length), 1)[0])
+      }
+      if (!mounted) return
+      setDisplay(HERO_CHARS.map((c, i) =>
+        corrupted.includes(i) ? NOISE_CHARS[Math.floor(Math.random() * NOISE_CHARS.length)] : c
+      ))
+      timeoutId = setTimeout(() => {
+        if (!mounted) return
+        setDisplay(HERO_CHARS.slice())
+        timeoutId = setTimeout(glitch, 700 + Math.random() * 1300)
+      }, 50 + Math.random() * 100)
+    }
+
+    timeoutId = setTimeout(glitch, 300 + Math.random() * 800)
+    return () => { mounted = false; clearTimeout(timeoutId) }
+  }, [reduceMotion])
+
+  return (
+    <p className={`${styles.heroSubText} mt-stack-sm max-w-5xl`}>
+      {display.join('')}
+    </p>
+  )
+}
+SignalNoiseEffect.propTypes = { reduceMotion: PropTypes.bool }
+
+const CYCLING_TERMS = [
+  'Transformer Architecture',
+  'Neural Architecture Search',
+  'Convolutional Neural Networks',
+  'Recurrent Networks & LSTMs',
+  'Diffusion Models',
+  'Graph Neural Networks',
+  'Attention Mechanisms',
+  'Self-Supervised Learning',
+]
+
+function CyclingTypeEffect({ reduceMotion }) {
+  const [idx, setIdx] = useState(0)
+  const [text, setText] = useState('')
+  const [erasing, setErasing] = useState(false)
+
+  useEffect(() => {
+    if (reduceMotion) { setText(CYCLING_TERMS[0]); return }
+    const target = CYCLING_TERMS[idx]
+    let id
+    if (!erasing) {
+      if (text.length < target.length)
+        id = setTimeout(() => setText(target.slice(0, text.length + 1)), 65)
+      else
+        id = setTimeout(() => setErasing(true), 1600)
+    } else {
+      if (text.length > 0)
+        id = setTimeout(() => setText(t => t.slice(0, -1)), 30)
+      else { setIdx(i => (i + 1) % CYCLING_TERMS.length); setErasing(false) }
+    }
+    return () => clearTimeout(id)
+  }, [text, erasing, idx, reduceMotion])
+
+  return (
+    <div className='mt-stack-xs flex items-center gap-stack-xs font-mono text-body-lg'>
+      <span className='select-none' style={{ color: 'rgb(var(--color-accent) / 0.45)' }}>›</span>
+      <span className='text-accent'>{text}</span>
+      <span className='animate-pulse text-accent'>_</span>
+    </div>
+  )
+}
+CyclingTypeEffect.propTypes = { reduceMotion: PropTypes.bool }
 
 const loadNeuralNetwork = () => import('./canvas/NeuralNetwork')
 const NeuralNetworkCanvas = lazy(loadNeuralNetwork)
@@ -56,10 +145,8 @@ const Hero = () => {
             Hi, I&apos;m
             <span className='text-accent'> Khang</span>
           </h1>
-          <p className={`${styles.heroSubText} mt-stack-sm max-w-5xl`}>
-            I build software that makes complex data useful, from storage-performance
-            systems and computer vision to AI-powered web experiences.
-          </p>
+          <SignalNoiseEffect reduceMotion={reduceMotion} />
+          <CyclingTypeEffect reduceMotion={reduceMotion} />
         </div>
       </div>
 
