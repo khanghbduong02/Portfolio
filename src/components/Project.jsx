@@ -60,7 +60,7 @@ const ProjectCard = ({ name, description, tags, image, coverLabel, source_code_l
                 rel='noopener noreferrer'
                 className='action-button min-w-0 flex-1'
               >
-                <img src={globe} alt='website' className="action-button__icon" />
+                <img src={globe} alt='' aria-hidden='true' className="action-button__icon" />
                 Website
               </a>
             )}
@@ -71,7 +71,7 @@ const ProjectCard = ({ name, description, tags, image, coverLabel, source_code_l
                 rel='noopener noreferrer'
                 className='action-button min-w-0 flex-1'
               >
-                <img src={github} alt='source code' className="action-button__icon" />
+                <img src={github} alt='' aria-hidden='true' className="action-button__icon" />
                 Source Code
               </a>
             )}

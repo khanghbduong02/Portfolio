@@ -34,7 +34,8 @@ const FeedbackCard = ({ testimonial, name, designation, company, image }) => {
 
           <img
             src={image}
-            alt={`feedback-by-${name}`}
+            alt=''
+            aria-hidden='true'
             className='w-10 h-10 rounded-full object-cover'
           />
         </div>

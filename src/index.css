@@ -68,6 +68,25 @@ body {
   color: rgb(var(--color-content));
 }
 
+.skip-link {
+  background: rgb(var(--color-surface-raised));
+  border: 1px solid rgb(var(--color-focus));
+  border-radius: var(--radius-control);
+  color: rgb(var(--color-content));
+  left: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  position: fixed;
+  text-decoration: none;
+  top: var(--space-4);
+  transform: translateY(calc(-100% - var(--space-4)));
+  transition: transform var(--duration-fast) var(--ease-standard);
+  z-index: 50;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .hero-backdrop {
   background-color: rgb(var(--color-canvas));
   background-image:
@@ -290,7 +309,7 @@ body {
 }
 
 .skill-map__group-title {
-  background-color: rgb(var(--color-muted) / 0.1);
+  background-color: rgb(var(--color-muted) / 0.15);
   background-image:
     radial-gradient(circle at 4% 18%, rgb(var(--color-star-core) / 0.92) 0 0.9px, transparent 1.6px),
     radial-gradient(circle at 8% 54%, rgb(var(--color-star-core) / 0.7) 0 0.8px, transparent 1.5px),
