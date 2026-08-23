@@ -90,8 +90,8 @@ const experiences = [
     icon: netapp,
     date: "Jun 2026 - Present",
     points: [
-      "Engineered data pipelines that collect, clean, and validate hardware telemetry across hosts, controllers, RAID configurations, and drive protocols.",
-      "Developed and enhanced a Django-based Database Web Interface and PyNT automation system with Django, SQL, and Pytest to validate data and run test suites across preconfigured testbeds.",
+      "Engineered data pipelines to collect, clean, and validate hardware telemetry across hosts, controllers, RAID configurations, and drive protocols.",
+      "Developed and enhanced a Django-based Database Web Interface and PyNT automation system using Django, SQL, and Pytest to validate data and run test suites across preconfigured testbeds.",
       "Built scikit-learn and CatBoost surrogate models to predict random and sequential read/write performance, reducing configuration-tuning cycles from weeks to hours.",
       "Collaborated through Jira, Confluence, and Bitbucket to track work and deliver process improvements.",
     ],
@@ -103,11 +103,11 @@ const experiences = [
     date: "Feb 2026 - Present",
     website_url: "https://pho316.com",
     points: [
-      "Architected and deployed a responsive, mobile-first React website that established the restaurant's digital presence.",
+      "Architected and deployed a responsive, mobile-first React website, establishing the restaurant's digital presence.",
       "Implemented Google Analytics 4 with react-ga4 to monitor acquisition sources and real-time traffic.",
       "Configured GitHub-to-Cloudflare Pages CI/CD for automated builds and zero-downtime content deployments.",
-      "Improved page performance by compressing food media, adopting modern image formats, and reducing bundle size for sub-second load times.",
-      "Instrumented outbound delivery and directions links to measure high-value customer conversion paths.",
+      "Improved page performance by compressing food media, adopting modern image formats, and reducing bundle size to achieve sub-second load times.",
+      "Instrumented outbound delivery and directions links to measure high-value conversion paths.",
     ],
   },
   {
@@ -117,7 +117,7 @@ const experiences = [
     date: "Sep 2023 - Jun 2026",
     points: [
       "Designed YAML-driven testbeds for controller firmware validation across storage configurations.",
-      "Built and benchmarked storage configurations spanning controllers and protocols using IOMeter and VDbench, surfacing results through a Database Web Interface for customer support.",
+      "Built and benchmarked storage configurations across controllers and protocols using IOMeter and VDbench, surfacing results through a database web interface for customer support.",
       "Collaborated through Confluence, Jira, and Bitbucket to coordinate performance-testing work and process improvements.",
     ],
   },
@@ -127,10 +127,10 @@ const experiences = [
     icon: d_academy,
     date: "Sep 2020 - Jun 2021",
     points: [
-      "Mathematics, Physics, and Chemistry to students preparing for graduation",
-      "Deepened my own understanding of fundamentals of my personal education",
-      "Used a combination of in-person, and remote learning",
-      "Collaborated with educators, and students' parents to develop a tailored tutoring plan",
+      "Tutored students preparing for graduation in mathematics, physics, and chemistry.",
+      "Deepened my understanding of core subjects and education fundamentals.",
+      "Delivered a combination of in-person and remote instruction.",
+      "Collaborated with educators and students' parents to develop tailored tutoring plans.",
     ],
   },
   {
@@ -139,10 +139,10 @@ const experiences = [
     icon: vgf,
     date: "Jan 2006 - Feb 2017",
     points: [
-      "Competed at national and international levels in Aerobic Gymnastics",
-      "Achieved the first prize (gold medal) in a men's individual performance at the Asian Championship 2015",
-      "Demonstrated exceptional discipline, dedication, and perseverance in training and competition",
-      "Developed strong teamwork, time management, and goal-setting skills",
+      "Competed in aerobic gymnastics at national and international levels.",
+      "Won first prize (gold medal) in the men's individual performance at the 2015 Asian Championship.",
+      "Demonstrated discipline, dedication, and perseverance in training and competition.",
+      "Developed teamwork, time-management, and goal-setting skills.",
     ],
   },
 ];
@@ -282,7 +282,7 @@ const projects = [
   {
     name: "Real-Time Failure Detection for 3D Printers",
     description:
-      "Trained a 24M-parameter PyTorch CNN with a ResNet-style architecture and squeeze-and-excitation attention to classify five 3D-print failure modes. Built a real-time computer-vision pipeline with OpenCV, ONNX, and asynchronous Python, adding temporal smoothing, Telegram alerts, and printer API auto-pause controls. Curated 5,000+ images with leak-free session splits and trained with class-weighted loss and automatic mixed precision.",
+      "Trained a 24M-parameter PyTorch CNN with a ResNet-style architecture and squeeze-and-excitation attention to classify five 3D-print failure modes. Built a real-time computer-vision pipeline with OpenCV, ONNX, and asynchronous Python, including temporal smoothing, Telegram alerts, and printer API auto-pause controls. Curated 5,000+ images with leak-free session splits and trained with class-weighted loss and automatic mixed precision.",
     tags: [
       { name: "pytorch", color: "blue-text-gradient" },
       { name: "computer-vision", color: "green-text-gradient" },
@@ -297,7 +297,7 @@ const projects = [
   {
     name: "EzResume",
     description:
-      "An AI-powered web app that generates ATS-friendly resumes and cover letters from candidate information and job postings. Built with React and Python, it uses Gemini API content generation and an automated LaTeX-to-PDF workflow for consistent, professional documents.",
+      "An AI-powered web app that generates ATS-friendly resumes and cover letters from candidate information and job postings. Built with React and Python, it uses Gemini API content generation and an automated LaTeX-to-PDF workflow to produce consistent, professional documents.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
       { name: "python", color: "green-text-gradient" },
@@ -311,7 +311,7 @@ const projects = [
   {
     name: "Guardian Trail",
     description:
-      "A cross-platform cooperative game built around continuous player communication and coordination, with keyboard and controller support on Windows, Linux, and macOS.",
+      "A cross-platform cooperative game centered on continuous player communication and coordination, with keyboard and controller support for Windows, Linux, and macOS.",
     tags: [
       { name: "multiplayer", color: "blue-text-gradient" },
       { name: "co-op", color: "green-text-gradient" },
@@ -325,7 +325,7 @@ const projects = [
   {
     name: "Digital Banking & Channel Optimization",
     description:
-      "Analyzed large-scale banking data to identify digital friction points and customer behavior patterns. Linked login failures and timeouts to increased support costs, and proposed solutions for authentication, session management, and digital experience.",
+      "Analyzed large-scale banking data to identify digital friction points and customer behavior patterns. Linked login failures and timeouts to increased support costs, then proposed improvements to authentication, session management, and the digital experience.",
     tags: [
       { name: "data-analysis", color: "blue-text-gradient" },
       { name: "hackathon", color: "green-text-gradient" },
@@ -338,7 +338,7 @@ const projects = [
   {
     name: "Elsewhere",
     description:
-      "A Godot 2D platformer game where You are a wandering traveler journeys through a mythical forest and meets spirits who have lost their masks and their identities. A strange force has scattered them. To help the spirits, you set out on a journey to locate all masks.",
+      "A Godot 2D platformer about a wandering traveler in a mythical forest. After a strange force scatters the masks and identities of the spirits they meet, the traveler sets out to recover them.",
     tags: [
       {
         name: "godot",
@@ -360,7 +360,7 @@ const projects = [
   {
     name: "Medical Image Segmentation: R2U-net & R2U-net++",
     description:
-      "The implementation of nested and dense skip connection to R2U-net, called R2U-net++, for medical image segmentation. Evaluated on multiple datasets, R2U-net++ outperformed R2U-net and other models in accuracy and robustness, demonstrating its potential for improving medical image analysis.",
+      "An implementation of R2U-net++ for medical image segmentation that adds nested and dense skip connections to R2U-net. Evaluated across multiple datasets, R2U-net++ outperformed R2U-net and other models in accuracy and robustness, showing potential to improve medical image analysis.",
     tags: [
       {
         name: "deep-learning",
@@ -386,7 +386,7 @@ const projects = [
   {
     name: "MadeYouMask!",
     description:
-      "A silly face mask making Unity game where You work in the \"all natural\" face mask making department at a spa. Create face masks per the customer's request-- no matter how ridiculous! Make different colored masks and please the customer (or not)!",
+      "A playful Unity game where you work in the \"all natural\" face-mask department of a spa. Create custom masks for each customer's request, no matter how ridiculous, by mixing colors to please the customer, or not.",
     tags: [
       {
         name: "unity",
@@ -408,7 +408,7 @@ const projects = [
   {
     name: "Face Recognition Systems Web Interface",
     description:
-      "A full-stack web platform for user registration and check-in through real-time facial recognition. Built with Flask, React, and Tailwind CSS, it removes training images after processing to support more security-conscious handling of face data.",
+      "A full-stack web platform for user registration and check-in using real-time facial recognition. Built with Flask, React, and Tailwind CSS, it removes training images after processing to support more security-conscious handling of face data.",
     tags: [
       { name: "react", color: "blue-text-gradient" },
       { name: "flask", color: "green-text-gradient" },
@@ -422,7 +422,7 @@ const projects = [
   {
     name: "Face Detection",
     description:
-      "A real-time computer-vision application that uses a pre-trained Haar Cascade model and webcam access to detect faces from live video input.",
+      "A real-time computer-vision application that uses a pre-trained Haar Cascade and webcam input to detect faces from live video.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "opencv", color: "green-text-gradient" },
@@ -436,7 +436,7 @@ const projects = [
   {
     name: "Handwritten Digit Recognition",
     description:
-      "A digit recognition tool using four neural network architectures, built with Python, scikit-learn, and Theano. Includes a drawable canvas for real-time testing and is structured for easy adaptation in future projects.",
+      "A digit-recognition tool built with Python, scikit-learn, and Theano that compares four neural-network architectures. Includes a drawable canvas for real-time testing and is structured for future adaptation.",
     tags: [
       { name: "ai-ml", color: "blue-text-gradient" },
       { name: "neural-network", color: "green-text-gradient" },
@@ -450,7 +450,7 @@ const projects = [
   {
     name: "Basic Snake Game",
     description:
-      "A classic Snake game built with JavaScript and HTML5 Canvas, featuring smooth controls, increasing speed, real-time scoring, and high-score tracking. Hosted online for anyone to play.",
+      "A classic Snake game built with JavaScript and HTML5 Canvas, featuring smooth controls, increasing speed, real-time scoring, and high-score tracking. It is hosted online for anyone to play.",
     tags: [
       { name: "html", color: "blue-text-gradient" },
       { name: "js", color: "green-text-gradient" },
@@ -463,7 +463,7 @@ const projects = [
   {
     name: "File Converter to ASCII Art",
     description:
-      "A Python tool that converts images and videos into ASCII art while preserving color and audio. Auto-detects file types, converts video frames bidirectionally, and maps pixels to ASCII characters using OpenCV and PIL.",
+      "A Python tool that converts images and videos into ASCII art while preserving color and audio. It auto-detects file types, converts video frames bidirectionally, and maps pixels to ASCII characters using OpenCV and PIL.",
     tags: [
       { name: "python", color: "blue-text-gradient" },
       { name: "opencv", color: "green-text-gradient" },
@@ -477,7 +477,7 @@ const projects = [
   {
     name: "Flappy Bird Game",
     description:
-      "A Flappy Bird clone built with Pygame featuring physics-based movement, randomized pipe generation, and high-score tracking. My first Python project, used to learn game timing, object movement, and collision detection.",
+      "A Flappy Bird clone built with Pygame, featuring physics-based movement, randomized pipe generation, and high-score tracking. My first Python project, it taught me about game timing, object movement, and collision detection.",
     tags: [
       { name: "pygame", color: "blue-text-gradient" },
       { name: "platformer", color: "green-text-gradient" },

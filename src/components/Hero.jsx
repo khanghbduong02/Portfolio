@@ -54,9 +54,8 @@ const Hero = () => {
             <span className='text-accent'> Khang</span>
           </h1>
           <p className={`${styles.heroSubText} mt-stack-sm max-w-5xl`}>
-            I develop innovative software solutions, specializing in machine learning,
-            web-based applications, and automation, with a strong foundation in
-            programming languages and quality assurance.
+            I build software that makes complex data useful, from storage-performance
+            systems and computer vision to AI-powered web experiences.
           </p>
         </div>
       </div>

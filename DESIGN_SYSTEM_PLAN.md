@@ -49,10 +49,10 @@
 
 ### 6. Refine Content and Accessibility
 
-- Replace the generic hero phrase with a concrete statement of the work Khang does.
-- Edit project and experience copy for grammar, sentence case, and scanability without inventing accomplishments.
-- Keep the named testimonial only if it is approved and accurately attributed.
-- Verify keyboard focus, touch targets, image alt text, color contrast, and responsive layouts at mobile and desktop widths.
+- [x] Replace the generic hero phrase with a concrete statement of the work Khang does.
+- [x] Edit project and experience copy for grammar, sentence case, and scanability without inventing accomplishments.
+- [x] Keep the named testimonial only if it is approved and accurately attributed.
+- [x] Verify keyboard focus, touch targets, image alt text, color contrast, and responsive layouts at mobile and desktop widths.
 
 ### 7. Verify Before Release
 
