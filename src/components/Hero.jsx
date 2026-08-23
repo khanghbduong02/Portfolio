@@ -1,8 +1,11 @@
 import { motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion as motionTokens, styles } from '../styles'
 import { fadeIn } from '../utils/motion'
-import NeuralNetworkCanvas, { IntroOverlay, RestartButton } from './canvas/NeuralNetwork'
+import { IntroOverlay, RestartButton } from './FaceIdIntro'
+
+const loadNeuralNetwork = () => import('./canvas/NeuralNetwork')
+const NeuralNetworkCanvas = lazy(loadNeuralNetwork)
 
 const Hero = () => {
   const canvasRef = useRef(null)
@@ -68,42 +71,44 @@ const Hero = () => {
           <>
             <IntroOverlay reducedMotion={reduceMotion} visible={phase === 'intro'} onStart={handleStart} />
             <RestartButton visible={phase === 'cnn'} onRestart={handleRestart} />
-            <NeuralNetworkCanvas key={runId} reducedMotion={reduceMotion} phase={phase} />
             {phase === 'cnn' && (
-              <div
-                style={{
-                  position:      'absolute',
-                  bottom:        '52px',
-                  left:          '50%',
-                  transform:     'translateX(-50%)',
-                  textAlign:     'center',
-                  pointerEvents: 'none',
-                  zIndex:        10,
-                  width:         '90%',
-                  maxWidth:      '90vw',
-                }}
-              >
-                <p style={{
-                  color:         'rgb(var(--color-content))',
-                  fontSize:      'clamp(0.875rem, 1.4vw, 1.25rem)',
-                  fontWeight:    600,
-                  letterSpacing: 0,
-                  margin:        0,
-                  whiteSpace:    'nowrap',
-                  overflow:      'hidden',
-                  textOverflow:  'ellipsis',
-                }}>
-                  Pixels → Patterns → &quot;It&apos;s Khang!&quot;
-                </p>
-                <p style={{
-                  color:         'rgb(var(--color-muted))',
-                  fontSize:      'clamp(0.75rem, 1vw, 0.875rem)',
-                  letterSpacing: 0,
-                  marginTop:     '0.25rem',
-                }}>
-                  drag to rotate
-                </p>
-              </div>
+              <Suspense fallback={null}>
+                <NeuralNetworkCanvas key={runId} reducedMotion={reduceMotion} phase={phase} />
+                <div
+                  style={{
+                    position:      'absolute',
+                    bottom:        '52px',
+                    left:          '50%',
+                    transform:     'translateX(-50%)',
+                    textAlign:     'center',
+                    pointerEvents: 'none',
+                    zIndex:        10,
+                    width:         '90%',
+                    maxWidth:      '90vw',
+                  }}
+                >
+                  <p style={{
+                    color:         'rgb(var(--color-content))',
+                    fontSize:      'clamp(0.875rem, 1.4vw, 1.25rem)',
+                    fontWeight:    600,
+                    letterSpacing: 0,
+                    margin:        0,
+                    whiteSpace:    'nowrap',
+                    overflow:      'hidden',
+                    textOverflow:  'ellipsis',
+                  }}>
+                    Pixels → Patterns → &quot;It&apos;s Khang!&quot;
+                  </p>
+                  <p style={{
+                    color:         'rgb(var(--color-muted))',
+                    fontSize:      'clamp(0.75rem, 1vw, 0.875rem)',
+                    letterSpacing: 0,
+                    marginTop:     '0.25rem',
+                  }}>
+                    drag to rotate
+                  </p>
+                </div>
+              </Suspense>
             )}
           </>
         )}

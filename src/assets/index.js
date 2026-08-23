@@ -1,6 +1,5 @@
-import logo from "./logo/logo_enhanced-removebg-photoaidcom-cropped.webp";
+import logo from "./logo/logo-nav.png";
 import close from "./close.svg";
-import khangPhoto from "./myPhoto.webp";
 
 import github from "./github.webp";
 import globe from "./globe.svg";
@@ -49,7 +48,6 @@ import philipq from "./testimonials/philipq.webp";
 export {
   logo,
   close,
-  khangPhoto,
   github,
   globe,
   menu,

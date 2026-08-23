@@ -2,7 +2,7 @@
 import { MotionConfig } from 'framer-motion';
 import { BrowserRouter } from 'react-router-dom';
 
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Project, StarsCanvas } from './components';
+import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Project } from './components';
 
 const App = () => {
   const basename = process.env.NODE_ENV === "production" ? "/Portfolio" : "/";
@@ -24,10 +24,7 @@ const App = () => {
             <Tech />
             <Project />
             <Feedbacks />
-            <div className="relative z-0">
-              <Contact />
-              <StarsCanvas />
-            </div>
+            <Contact />
           </main>
         </div>
       </MotionConfig>

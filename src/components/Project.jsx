@@ -20,6 +20,8 @@ const ProjectCard = ({ name, description, tags, image, coverLabel, source_code_l
             <img
               src={image}
               alt={name}
+              loading='lazy'
+              decoding='async'
               className='h-full w-full rounded-card object-cover'
             />
           ) : (

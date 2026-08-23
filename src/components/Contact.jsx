@@ -1,11 +1,13 @@
-import { useEffect, useState, useRef } from 'react'
+import { lazy, Suspense, useEffect, useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
 
 import { styles } from '../styles'
-import { EarthCanvas } from './canvas'
 import { SectionWrapper } from '../hoc'
 import { slideIn } from '../utils/motion'
+
+const EarthCanvas = lazy(() => import('./canvas/Earth'))
+const StarsCanvas = lazy(() => import('./canvas/Stars'))
 
 const ContactComponent = () => {
   const formRef = useRef()
@@ -75,7 +77,7 @@ const ContactComponent = () => {
   }
 
   return (
-    <div ref={canvasRef} className='flex w-full flex-col-reverse gap-stack-xl overflow-hidden xl:flex-row'>
+    <div ref={canvasRef} className='relative z-0 flex w-full flex-col-reverse gap-stack-xl overflow-hidden xl:flex-row'>
       <motion.div
         variants={slideIn('left', 0.2, 1)}
         className='surface-panel flex-[0.75] p-stack-lg text-left'
@@ -186,8 +188,17 @@ const ContactComponent = () => {
         variants={slideIn('right', 0.2, 1)}
         className='xl:flex-1 xl:h-[850px] md:h-[550px] md:w-[550px] sm:w-[450px] sm:h-[450px] h-[260px] w-[260px] m-auto'
       >
-        {isVisible && <EarthCanvas />}
+        {isVisible && (
+          <Suspense fallback={null}>
+            <EarthCanvas />
+          </Suspense>
+        )}
       </motion.div>
+      {isVisible && (
+        <Suspense fallback={null}>
+          <StarsCanvas />
+        </Suspense>
+      )}
     </div>
   )
 }
