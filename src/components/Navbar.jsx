@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { styles } from '../styles';
@@ -8,13 +8,28 @@ import { logo, menu, close } from '../assets';
 const Navbar = () => {
   const [active, setActive] = useState("");
   const [toggle, setToggle] = useState(false);
+  const menuButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!toggle) return undefined;
+
+    const closeWithEscape = (event) => {
+      if (event.key !== 'Escape') return;
+
+      setToggle(false);
+      menuButtonRef.current?.focus();
+    };
+
+    window.addEventListener('keydown', closeWithEscape);
+    return () => window.removeEventListener('keydown', closeWithEscape);
+  }, [toggle]);
 
   return (
     <nav
       aria-label='Primary navigation'
       className={`${styles.paddingX} w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
     >
-      <div className='w-full flex justify-between items-center max-w-7x1 mx-auto'>
+      <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
           to="/"
           className='flex items-center gap-2'
@@ -48,6 +63,7 @@ const Navbar = () => {
         {/* Show menu icon when screen is small */}
         <div className='lg:hidden  flex flex-1 justify-end items-center'>
           <button
+            ref={menuButtonRef}
             type='button'
             aria-controls='mobile-navigation'
             aria-expanded={toggle}

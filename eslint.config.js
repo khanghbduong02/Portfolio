@@ -35,4 +35,17 @@ export default [
       ],
     },
   },
+  {
+    files: ['postcss.config.js'],
+    languageOptions: {
+      globals: globals.node,
+    },
+  },
+  {
+    files: ['tailwind.config.js'],
+    languageOptions: {
+      globals: globals.node,
+      sourceType: 'commonjs',
+    },
+  },
 ]
