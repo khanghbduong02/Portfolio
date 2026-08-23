@@ -402,10 +402,7 @@ body {
 
 .skill-orbit.is-paused .skill-orbit__carrier,
 .skill-orbit.is-paused .skill-node__body,
-.skill-orbit.is-paused .skill-node__orb::before,
-.skill-orbit:has(.skill-node:hover) .skill-orbit__carrier,
-.skill-orbit:has(.skill-node:hover) .skill-node__body,
-.skill-orbit:has(.skill-node:hover) .skill-node__orb::before {
+.skill-orbit.is-paused .skill-node__orb::before {
   animation-play-state: paused;
 }
 
@@ -508,7 +505,6 @@ body {
 }
 
 .skill-node.is-active .skill-node__label,
-.skill-node:hover .skill-node__label,
 .skill-node:focus-visible .skill-node__label {
   opacity: 1;
   transform: translate(-50%, 0);
@@ -537,12 +533,6 @@ body {
 
 .skill-node--foundation {
   --skill-node-size: clamp(2.5rem, 3vw, 2.75rem);
-}
-
-.skill-node:hover .skill-node__orb {
-  border-color: rgb(var(--color-planet-light) / 0.9);
-  filter: brightness(1.1);
-  transform: translateY(-2px) scale(1.03);
 }
 
 .skill-map__planet-controls {
@@ -574,13 +564,38 @@ body {
     color var(--duration-fast) var(--ease-standard);
 }
 
-.skill-map__planet-button:hover,
 .skill-map__planet-button:focus-visible,
 .skill-map__planet-button.is-active {
   background: rgb(var(--color-star-mid) / 0.12);
   border-color: rgb(var(--color-star-mid) / 0.7);
   color: rgb(var(--color-content));
   outline: none;
+}
+
+@media (hover: hover) {
+  .skill-orbit:has(.skill-node:hover) .skill-orbit__carrier,
+  .skill-orbit:has(.skill-node:hover) .skill-node__body,
+  .skill-orbit:has(.skill-node:hover) .skill-node__orb::before {
+    animation-play-state: paused;
+  }
+
+  .skill-node:hover .skill-node__label {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .skill-node:hover .skill-node__orb {
+    border-color: rgb(var(--color-planet-light) / 0.9);
+    filter: brightness(1.1);
+    transform: translateY(-2px) scale(1.03);
+  }
+
+  .skill-map__planet-button:hover {
+    background: rgb(var(--color-star-mid) / 0.12);
+    border-color: rgb(var(--color-star-mid) / 0.7);
+    color: rgb(var(--color-content));
+    outline: none;
+  }
 }
 
 .skill-orbit--alpha {

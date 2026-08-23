@@ -54,8 +54,9 @@ const orbitalTrajectories = {
 
 const groupId = (title) => `skill-group-${title.replace(/\s|&/g, '-').toLowerCase()}`
 
-const TechnologyNode = ({ skill, orbit, isActive, onActivate, onFocus, onDeactivate }) => {
+const TechnologyNode = ({ skill, orbit, isActive, onActivate, onFocus, onDeactivate, onToggle }) => {
   const technology = technologyByName.get(skill.name)
+  const pointerInteractionRef = useRef(false)
 
   if (!technology) return null
 
@@ -75,11 +76,21 @@ const TechnologyNode = ({ skill, orbit, isActive, onActivate, onFocus, onDeactiv
           className={`skill-node skill-node--${skill.evidence} ${isActive ? 'is-active' : ''}`}
           aria-label={`${skill.name}, ${skill.evidence} project-backed focus`}
           aria-pressed={isActive}
-          onMouseEnter={onActivate}
-          onMouseLeave={onDeactivate}
-          onFocus={onFocus}
+          onPointerEnter={(event) => {
+            if (event.pointerType === 'mouse') onActivate()
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType === 'mouse') onDeactivate()
+          }}
+          onPointerDown={() => { pointerInteractionRef.current = true }}
+          onFocus={() => {
+            if (!pointerInteractionRef.current) onFocus()
+          }}
           onBlur={onDeactivate}
-          onClick={onActivate}
+          onClick={() => {
+            onToggle()
+            pointerInteractionRef.current = false
+          }}
         >
           <div className='skill-node__body'>
             <div className='skill-node__orb' title={`${skill.name}: ${skill.evidence} project-backed focus`}>
@@ -106,6 +117,44 @@ TechnologyNode.propTypes = {
   onActivate: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
   onDeactivate: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
+}
+
+const PlanetControl = ({ skillName, isActive, onActivate, onDeactivate, onToggle }) => {
+  const pointerInteractionRef = useRef(false)
+
+  return (
+    <button
+      type='button'
+      className={`skill-map__planet-button ${isActive ? 'is-active' : ''}`}
+      aria-pressed={isActive}
+      onPointerEnter={(event) => {
+        if (event.pointerType === 'mouse') onActivate()
+      }}
+      onPointerLeave={(event) => {
+        if (event.pointerType === 'mouse') onDeactivate()
+      }}
+      onPointerDown={() => { pointerInteractionRef.current = true }}
+      onFocus={() => {
+        if (!pointerInteractionRef.current) onActivate()
+      }}
+      onBlur={onDeactivate}
+      onClick={() => {
+        onToggle()
+        pointerInteractionRef.current = false
+      }}
+    >
+      {skillName}
+    </button>
+  )
+}
+
+PlanetControl.propTypes = {
+  skillName: PropTypes.string.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onActivate: PropTypes.func.isRequired,
+  onDeactivate: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
 }
 
 const TechComponent = () => {
@@ -114,6 +163,7 @@ const TechComponent = () => {
   const [isSystemsVisible, setIsSystemsVisible] = useState(false)
 
   const activateSkill = (id) => setActiveSkill(id)
+  const toggleSkill = (id) => setActiveSkill((currentSkill) => currentSkill === id ? null : id)
   const clearSkill = (id) => setActiveSkill((currentSkill) => currentSkill === id ? null : currentSkill)
 
   useEffect(() => {
@@ -229,6 +279,7 @@ const TechComponent = () => {
                       onActivate={() => activateSkill(skillId(group.title, skill.name))}
                       onFocus={() => activateSkill(skillId(group.title, skill.name))}
                       onDeactivate={() => clearSkill(skillId(group.title, skill.name))}
+                      onToggle={() => toggleSkill(skillId(group.title, skill.name))}
                     />
                   ))}
                 </div>
@@ -238,19 +289,14 @@ const TechComponent = () => {
                     const isActive = activeSkill === id
 
                     return (
-                      <button
+                      <PlanetControl
                         key={skill.name}
-                        type='button'
-                        className={`skill-map__planet-button ${isActive ? 'is-active' : ''}`}
-                        aria-pressed={isActive}
-                        onMouseEnter={() => activateSkill(id)}
-                        onMouseLeave={() => clearSkill(id)}
-                        onFocus={() => activateSkill(id)}
-                        onBlur={() => clearSkill(id)}
-                        onClick={() => activateSkill(id)}
-                      >
-                        {skill.name}
-                      </button>
+                        skillName={skill.name}
+                        isActive={isActive}
+                        onActivate={() => activateSkill(id)}
+                        onDeactivate={() => clearSkill(id)}
+                        onToggle={() => toggleSkill(id)}
+                      />
                     )
                   })}
                 </div>
