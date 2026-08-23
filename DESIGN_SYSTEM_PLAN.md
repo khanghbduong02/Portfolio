@@ -56,6 +56,6 @@
 
 ### 7. Verify Before Release
 
-- Test WebP loading and PNG/JPEG glTF fallbacks in supported browsers.
-- Run production build, lint, and visual checks after each component group is migrated.
-- Compare Lighthouse performance before and after the changes.
+- [x] Test WebP loading and PNG/JPEG glTF fallbacks in supported browsers.
+- [x] Run production build, lint, and visual checks after each component group is migrated.
+- [x] Compare Lighthouse performance before and after the changes.
