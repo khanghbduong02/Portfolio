@@ -32,16 +32,22 @@ import netapp from "./company/netapp.webp";
 import pho316 from "./company/pho316.webp";
 import vgf from "./company/vgf.webp";
 
-import ascii from "./project/ascii.webp";
 import banking from "./project/banking.webp";
-import digit from "./project/digit.webp";
+import chocolateVision from "./project/chocolate-vision.webp";
+import divoomPc from "./project/divoom-pc.png";
 import elsewhere from "./project/elsewhere.webp";
 import ezresume from "./project/ezresume.webp";
-import flappybird from "./project/flappybird.webp";
+import faceDetection from "./project/face-detection.webp";
+import fileToAscii from "./project/file-to-ascii.gif";
+import flappyBird from "./project/flappy-bird.gif";
 import frs from "./project/frs.webp";
+import guardianTrail from "./project/guardian-trail.gif";
+import handwrittenDigit from "./project/handwritten-digit.gif";
+import snakeGame from "./project/snake.gif";
+import infiniteMinesweeper from "./project/infinite-minesweeper.webp";
 import mask from "./project/made-you-mask.webp";
 import segmentation from "./project/medical-image-segmentation.webp";
-import snake from "./project/snake.webp";
+import printFailure from "./project/3d-failure-detection.webp";
 
 import philipq from "./testimonials/philipq.webp";
 
@@ -76,15 +82,21 @@ export {
   netapp,
   pho316,
   vgf,
-  ascii,
   banking,
-  digit,
+  chocolateVision,
+  divoomPc,
   elsewhere,
   ezresume,
-  flappybird,
+  faceDetection,
+  fileToAscii,
+  flappyBird,
   frs,
+  guardianTrail,
+  handwrittenDigit,
+  infiniteMinesweeper,
+  snakeGame,
   mask,
+  printFailure,
   segmentation,
-  snake,
   philipq,
 };
