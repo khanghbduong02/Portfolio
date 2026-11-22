@@ -18,6 +18,7 @@ import javascript from "./tech/javascript.webp";
 import jupyter from "./tech/jupyter.svg";
 import mongodb from "./tech/mongodb.webp";
 import mysql from "./tech/mysql.svg";
+import numpy from "./tech/numpy.svg";
 import python from "./tech/python.svg";
 import pytorch from "./tech/pytorch.svg";
 import reactjs from "./tech/reactjs.webp";
@@ -71,6 +72,7 @@ export {
   jupyter,
   mongodb,
   mysql,
+  numpy,
   python,
   pytorch,
   reactjs,

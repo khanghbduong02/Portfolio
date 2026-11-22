@@ -14,6 +14,7 @@ import {
   sklearn,
   pytorch,
   mysql,
+  numpy,
   git,
   docker,
   jupyter,
@@ -192,6 +193,10 @@ const technologies = [
     icon: pytorch,
   },
   {
+    name: "NumPy",
+    icon: numpy,
+  },
+  {
     name: "MySQL",
     icon: mysql,
   },
@@ -247,6 +252,7 @@ const technologyGroups = [
     skills: [
       { name: "Python", evidence: "featured", orbit: 3 },
       { name: "PyTorch", evidence: "strong", orbit: 0 },
+      { name: "NumPy", evidence: "strong", orbit: 7 },
       { name: "Scikit Learn", evidence: "strong", orbit: 1 },
       { name: "SQL", evidence: "strong", orbit: 2 },
       { name: "Jupyter", evidence: "working", orbit: 4 },

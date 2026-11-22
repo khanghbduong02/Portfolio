@@ -48,7 +48,7 @@ const AboutComponent = () => {
         variants={fadeIn("", 0.1, 1)}
         className='mt-stack-md mx-auto max-w-5xl text-center text-body-lg text-muted'
       >
-        I&apos;m a Computer Science graduate currently pursuing a Master&apos;s in Data Science, with experience in software engineering, machine learning, and full-stack web development. My technical experience includes building machine learning models (neural networks, regression, classification), developing full-stack applications with Flask, Django, and React, and implementing AI solutions such as medical image segmentation using R2U-Net in PyTorch. I enjoy working at the intersection of software engineering and data science—building scalable systems that transform data into actionable insights. I&apos;m particularly interested in roles involving machine learning engineering, web development, and data-driven system optimization.
+        I&apos;m a Computer Science graduate currently pursuing a Master&apos;s in Data Science, with experience across software engineering, machine learning, and full-stack web development. I build machine learning systems end to end: PyTorch computer-vision models, scikit-learn surrogates for storage-performance tuning, and reinforcement-learning agents such as an AlphaZero-style Ô ăn quan player with a hand-written NumPy policy/value network, PUCT search, and a multiprocess self-play loop. I also ship the software around those models with Flask, Django, and React, so results become tools people can actually use. I enjoy working where systems engineering and data science meet, and I&apos;m particularly interested in roles involving machine learning engineering, applied research, and data-driven system optimization.
       </motion.p>
 
       <motion.div

@@ -30,6 +30,16 @@ const orbitalPeriods = {
   eta: 26,
 }
 const orbitalTrajectories = {
+  8: [
+    { track: 'alpha', phase: 0 },
+    { track: 'beta', phase: 12.5 },
+    { track: 'gamma', phase: 25 },
+    { track: 'delta', phase: 37.5 },
+    { track: 'epsilon', phase: 50 },
+    { track: 'zeta', phase: 62.5 },
+    { track: 'eta', phase: 75 },
+    { track: 'alpha', phase: 87.5 },
+  ],
   7: [
     { track: 'alpha', phase: 0 },
     { track: 'beta', phase: 13.889 },

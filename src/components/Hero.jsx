@@ -59,6 +59,8 @@ const CYCLING_TERMS = [
   'Graph Neural Networks',
   'Attention Mechanisms',
   'Self-Supervised Learning',
+  'Reinforcement Learning',
+  'Monte Carlo Tree Search',
 ]
 
 function CyclingTypeEffect({ reduceMotion }) {
