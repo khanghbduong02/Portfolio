@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { BrainCircuit, Code2, Gamepad2, Terminal } from 'lucide-react'
 import PropTypes from 'prop-types'
 // Previous technology-balls canvas imports, retained for restoration.
@@ -159,29 +159,10 @@ PlanetControl.propTypes = {
 
 const TechComponent = () => {
   const [activeSkill, setActiveSkill] = useState(null)
-  const headingRef = useRef(null)
-  const [isSystemsVisible, setIsSystemsVisible] = useState(false)
 
   const activateSkill = (id) => setActiveSkill(id)
   const toggleSkill = (id) => setActiveSkill((currentSkill) => currentSkill === id ? null : id)
   const clearSkill = (id) => setActiveSkill((currentSkill) => currentSkill === id ? null : currentSkill)
-
-  useEffect(() => {
-    const target = headingRef.current
-    if (!target) return undefined
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return
-        setIsSystemsVisible(true)
-        observer.unobserve(entry.target)
-      },
-      { threshold: 0.1 }
-    )
-
-    observer.observe(target)
-    return () => observer.disconnect()
-  }, [])
 
   /*
    * Previous interactive technology-balls canvas, retained for restoration.
@@ -210,7 +191,7 @@ const TechComponent = () => {
 
   return (
     <>
-      <motion.div ref={headingRef} variants={textVariant()}>
+      <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>What I am comfortable with</p>
         <h2 className={styles.sectionHeadText}>Technologies.</h2>
       </motion.div>
@@ -242,69 +223,68 @@ const TechComponent = () => {
       </div>
       */}
 
-      {isSystemsVisible && (
-        <motion.section
-          className='skill-map mt-stack-2xl'
-          aria-label='Technology groups'
-          initial='hidden'
-          animate='show'
-          variants={staggerContainer(motionTokens.stagger, motionTokens.duration.fast)}
-        >
-          <div className='skill-map__field'>
-            {technologyGroups.map((group) => (
-              <motion.section
-                key={group.title}
-                className='skill-map__group'
-                aria-labelledby={groupId(group.title)}
-                variants={fadeIn('up', 0, motionTokens.duration.standard)}
-              >
-                <div className={`skill-map__orbit skill-map__orbit--${group.skills.length}`}>
-                  <h4 id={groupId(group.title)} className='skill-map__group-title'>
-                    {group.title}
-                  </h4>
-                  <div className='skill-map__core'>
-                    <div className='skill-map__star' aria-hidden='true'>
-                      {(() => {
-                        const GroupIcon = groupIcons[group.title]
-                        return <GroupIcon className='skill-map__star-icon' strokeWidth={1.6} />
-                      })()}
-                    </div>
+      <motion.section
+        className='skill-map mt-stack-2xl'
+        aria-label='Technology groups'
+        initial='hidden'
+        whileInView='show'
+        viewport={{ once: true, amount: 0.05 }}
+        variants={staggerContainer(motionTokens.stagger, motionTokens.duration.fast)}
+      >
+        <div className='skill-map__field'>
+          {technologyGroups.map((group) => (
+            <motion.section
+              key={group.title}
+              className='skill-map__group'
+              aria-labelledby={groupId(group.title)}
+              variants={fadeIn('up', 0, motionTokens.duration.standard)}
+            >
+              <div className={`skill-map__orbit skill-map__orbit--${group.skills.length}`}>
+                <h4 id={groupId(group.title)} className='skill-map__group-title'>
+                  {group.title}
+                </h4>
+                <div className='skill-map__core'>
+                  <div className='skill-map__star' aria-hidden='true'>
+                    {(() => {
+                      const GroupIcon = groupIcons[group.title]
+                      return <GroupIcon className='skill-map__star-icon' strokeWidth={1.6} />
+                    })()}
                   </div>
-                  {group.skills.map((skill, index) => (
-                    <TechnologyNode
-                      key={skill.name}
-                      skill={skill}
-                      orbit={orbitalTrajectories[group.skills.length][skill.orbit ?? index]}
-                      isActive={activeSkill === skillId(group.title, skill.name)}
-                      onActivate={() => activateSkill(skillId(group.title, skill.name))}
-                      onFocus={() => activateSkill(skillId(group.title, skill.name))}
-                      onDeactivate={() => clearSkill(skillId(group.title, skill.name))}
-                      onToggle={() => toggleSkill(skillId(group.title, skill.name))}
-                    />
-                  ))}
                 </div>
-                <div className='skill-map__planet-controls' role='group' aria-label={`${group.title} planets`}>
-                  {group.skills.map((skill) => {
-                    const id = skillId(group.title, skill.name)
-                    const isActive = activeSkill === id
+                {group.skills.map((skill, index) => (
+                  <TechnologyNode
+                    key={skill.name}
+                    skill={skill}
+                    orbit={orbitalTrajectories[group.skills.length][skill.orbit ?? index]}
+                    isActive={activeSkill === skillId(group.title, skill.name)}
+                    onActivate={() => activateSkill(skillId(group.title, skill.name))}
+                    onFocus={() => activateSkill(skillId(group.title, skill.name))}
+                    onDeactivate={() => clearSkill(skillId(group.title, skill.name))}
+                    onToggle={() => toggleSkill(skillId(group.title, skill.name))}
+                  />
+                ))}
+              </div>
+              <div className='skill-map__planet-controls' role='group' aria-label={`${group.title} planets`}>
+                {group.skills.map((skill) => {
+                  const id = skillId(group.title, skill.name)
+                  const isActive = activeSkill === id
 
-                    return (
-                      <PlanetControl
-                        key={skill.name}
-                        skillName={skill.name}
-                        isActive={isActive}
-                        onActivate={() => activateSkill(id)}
-                        onDeactivate={() => clearSkill(id)}
-                        onToggle={() => toggleSkill(id)}
-                      />
-                    )
-                  })}
-                </div>
-              </motion.section>
-            ))}
-          </div>
-        </motion.section>
-      )}
+                  return (
+                    <PlanetControl
+                      key={skill.name}
+                      skillName={skill.name}
+                      isActive={isActive}
+                      onActivate={() => activateSkill(id)}
+                      onDeactivate={() => clearSkill(id)}
+                      onToggle={() => toggleSkill(id)}
+                    />
+                  )
+                })}
+              </div>
+            </motion.section>
+          ))}
+        </div>
+      </motion.section>
     </>
   )
 }

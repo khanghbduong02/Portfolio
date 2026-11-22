@@ -45,6 +45,7 @@ import guardianTrail from "./project/guardian-trail.gif";
 import handwrittenDigit from "./project/handwritten-digit.gif";
 import snakeGame from "./project/snake.gif";
 import infiniteMinesweeper from "./project/infinite-minesweeper.webp";
+import oAnQuan from "./project/o-an-quan.gif";
 import mask from "./project/made-you-mask.webp";
 import segmentation from "./project/medical-image-segmentation.webp";
 import printFailure from "./project/3d-failure-detection.webp";
@@ -94,6 +95,7 @@ export {
   guardianTrail,
   handwrittenDigit,
   infiniteMinesweeper,
+  oAnQuan,
   snakeGame,
   mask,
   printFailure,

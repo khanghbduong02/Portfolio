@@ -43,6 +43,7 @@ import {
   snakeGame,
   printFailure,
   infiniteMinesweeper,
+  oAnQuan,
   // Testimonials
   philipq,
 } from "../assets";
@@ -286,6 +287,88 @@ const technologyGroups = [
 
 const projects = [
   {
+    name: "Ô Ăn Quan RL",
+    description:
+    "Built an AlphaZero-style reinforcement-learning agent for Ô ăn quan, the Vietnamese mancala game. The project pairs an immutable rules engine with a 29-feature action-aware encoding, a hand-written NumPy policy/value network, PUCT search and a multiprocess self-play loop. A supervised warm start from a greedy teacher plus a terminal-value fix lifted the agent to 0.978, 0.891 and 0.884 against greedy, alpha-beta 4 and MCTS 100 at 400 simulations.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "numpy", color: "green-text-gradient" },
+      { name: "reinforcement-learning", color: "pink-text-gradient" },
+      { name: "alphazero", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+      { name: "mcts", color: "blue-text-gradient" },
+      { name: "self-play", color: "green-text-gradient" },
+    ],
+    image: oAnQuan,
+    coverLabel: "Ô Ăn Quan RL",
+    source_code_link: "https://github.com/khanghbduong02/O-An-Quan-RL",
+    web_url: "",
+  },
+  {
+    name: "Infinite Minesweeper RL Agent",
+    description:
+    "Built an unbounded Minesweeper environment with deterministic chunked boards, an 11-channel local observation window and action masking. Trained a NumPy CNN Double-DQN with reveal and flag actions, then paired it with a memoized constraint solver that flags certain mines and restricts the policy to the lowest-risk moves. Across 500 matched boards the hybrid averaged 1,454 revealed cells and beat the rule-based and CSP baselines, while the standalone policies did not.",
+    tags: [
+      { name: "python", color: "blue-text-gradient" },
+      { name: "numpy", color: "green-text-gradient" },
+      { name: "reinforcement-learning", color: "pink-text-gradient" },
+      { name: "dqn", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+      { name: "cnn", color: "blue-text-gradient" },
+      { name: "constraint-solving", color: "green-text-gradient" },
+    ],
+    image: infiniteMinesweeper,
+    coverLabel: "Infinite Minesweeper RL Agent",
+    source_code_link: "https://github.com/khanghbduong02/Infinite-Minesweeper-RL-Agent",
+    web_url: "",
+  },
+  {
+    name: "Chocolate Vision — Chocolathon 2026",
+    description:
+    "Won 4th place on September 19, 2026. Integrated YOLOv8 image recognition and AssemblyAI live speech transcription into a cashier workflow for verifying chocolate-box orders. Built a React and Flask review flow that compares spoken and detected flavors, flags quantity mismatches, and lets cashiers correct orders before saving. Implemented order APIs and auditable records with transcripts, camera predictions, packing time, and original and annotated photos.",
+    tags: [
+      { name: "full-stack", color: "blue-text-gradient" },
+      { name: "react", color: "blue-text-gradient" },
+      { name: "flask", color: "green-text-gradient" },
+      { name: "python", color: "green-text-gradient" },
+      { name: "yolov8", color: "pink-text-gradient" },
+      { name: "assemblyai", color: "pink-text-gradient" },
+    ],
+    image: chocolateVision,
+    coverLabel: "Chocolate Vision",
+    source_code_link: "",
+    web_url: "https://chocolathon-chocolate-vision-sugar.vercel.app/",
+  },
+  {
+    name: "Real-Time Failure Detection for 3D Printers",
+    description:
+    "Trained a 24M-parameter PyTorch CNN with a ResNet-style architecture and squeeze-and-excitation attention to classify five 3D-print failure modes. Built a real-time computer-vision pipeline with OpenCV, ONNX, and asynchronous Python, including temporal smoothing, Telegram alerts, and printer API auto-pause controls. Curated 5,000+ images with leak-free session splits and trained with class-weighted loss and automatic mixed precision.",
+    tags: [
+      { name: "pytorch", color: "blue-text-gradient" },
+      { name: "computer-vision", color: "green-text-gradient" },
+      { name: "onnx", color: "pink-text-gradient" },
+      { name: "opencv", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+    ],
+    image: printFailure,
+    coverLabel: "3D Print Failure Detection",
+    source_code_link: "https://github.com/khanghbduong02/KhangDuong-CS898BA-Project",
+    web_url: "",
+  },
+  {
+    name: "EzResume",
+    description:
+    "A privacy-first AI job-application workspace that generates tailored LaTeX resumes and cover letters with Gemini. React front end, Flask API, Firebase auth and an owner-only Firestore profile, drag-to-reorder sections and parallel document generation. A multi-agent reviewer, relevance pruner and visual inspector revise each draft before an ATS pass checks the rendered PDF, while real contact details are substituted locally and never sent to the model.",
+    tags: [
+      { name: "react", color: "blue-text-gradient" },
+      { name: "flask", color: "green-text-gradient" },
+      { name: "gemini", color: "pink-text-gradient" },
+      { name: "firebase", color: "green-text-gradient" },
+      { name: "latex", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
+      { name: "ats", color: "blue-text-gradient" },
+    ],
+    image: ezresume,
+    source_code_link: "https://github.com/khanghbduong02/EzResume",
+    web_url: "https://ezresumeai.vercel.app",
+  },
+  {
     name: "Divoom Times Gate — Theme Studio",
     description:
       "Built a Windows app and React editor for the Divoom Times Gate, a five-panel 128×128 LCD. The FastAPI agent renders every panel with Pillow and streams CPU, GPU and network metrics over the LAN, skipping unchanged frames, re-pushing after reboots, and running from the tray with autostart. Includes drag-and-drop metric layers, gauges and line graphs, animated GIF backgrounds, presets, phone access, and a single-file PyInstaller build.",
@@ -303,74 +386,9 @@ const projects = [
     web_url: "https://site-5b02d7b84842479d9d6e7cd6dfc76009.freebuff.page",
   },
   {
-    name: "Infinite Minesweeper RL Agent",
-    description:
-      "Built an unbounded Minesweeper environment with deterministic chunked boards, an 11-channel local observation window and action masking. Trained a NumPy CNN Double-DQN with reveal and flag actions, then paired it with a memoized constraint solver that flags certain mines and restricts the policy to the lowest-risk moves. Across 500 matched boards the hybrid averaged 1,454 revealed cells and beat the rule-based and CSP baselines, while the standalone policies did not.",
-    tags: [
-      { name: "python", color: "blue-text-gradient" },
-      { name: "numpy", color: "green-text-gradient" },
-      { name: "reinforcement-learning", color: "pink-text-gradient" },
-      { name: "dqn", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
-      { name: "cnn", color: "blue-text-gradient" },
-      { name: "constraint-solving", color: "green-text-gradient" },
-    ],
-    image: infiniteMinesweeper,
-    coverLabel: "Infinite Minesweeper RL Agent",
-    source_code_link: "https://github.com/khanghbduong02/Infinite-Minesweeper-RL-Agent",
-    web_url: "",
-  },
-  {
-    name: "Chocolate Vision — Chocolathon 2026",
-    description:
-      "Won 4th place on September 19, 2026. Integrated YOLOv8 image recognition and AssemblyAI live speech transcription into a cashier workflow for verifying chocolate-box orders. Built a React and Flask review flow that compares spoken and detected flavors, flags quantity mismatches, and lets cashiers correct orders before saving. Implemented order APIs and auditable records with transcripts, camera predictions, packing time, and original and annotated photos.",
-    tags: [
-      { name: "full-stack", color: "blue-text-gradient" },
-      { name: "react", color: "blue-text-gradient" },
-      { name: "flask", color: "green-text-gradient" },
-      { name: "python", color: "green-text-gradient" },
-      { name: "yolov8", color: "pink-text-gradient" },
-      { name: "assemblyai", color: "pink-text-gradient" },
-    ],
-    image: chocolateVision,
-    coverLabel: "Chocolate Vision",
-    source_code_link: "",
-    web_url: "https://chocolathon-chocolate-vision-sugar.vercel.app/",
-  },
-  {
-    name: "Real-Time Failure Detection for 3D Printers",
-    description:
-      "Trained a 24M-parameter PyTorch CNN with a ResNet-style architecture and squeeze-and-excitation attention to classify five 3D-print failure modes. Built a real-time computer-vision pipeline with OpenCV, ONNX, and asynchronous Python, including temporal smoothing, Telegram alerts, and printer API auto-pause controls. Curated 5,000+ images with leak-free session splits and trained with class-weighted loss and automatic mixed precision.",
-    tags: [
-      { name: "pytorch", color: "blue-text-gradient" },
-      { name: "computer-vision", color: "green-text-gradient" },
-      { name: "onnx", color: "pink-text-gradient" },
-      { name: "opencv", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
-    ],
-    image: printFailure,
-    coverLabel: "3D Print Failure Detection",
-    source_code_link: "https://github.com/khanghbduong02/KhangDuong-CS898BA-Project",
-    web_url: "",
-  },
-  {
-    name: "EzResume",
-    description:
-      "A privacy-first AI job-application workspace that generates tailored LaTeX resumes and cover letters with Gemini. React front end, Flask API, Firebase auth and an owner-only Firestore profile, drag-to-reorder sections and parallel document generation. A multi-agent reviewer, relevance pruner and visual inspector revise each draft before an ATS pass checks the rendered PDF, while real contact details are substituted locally and never sent to the model.",
-    tags: [
-      { name: "react", color: "blue-text-gradient" },
-      { name: "flask", color: "green-text-gradient" },
-      { name: "gemini", color: "pink-text-gradient" },
-      { name: "firebase", color: "green-text-gradient" },
-      { name: "latex", color: "bg-gradient-to-r from-yellow-400 to-yellow-500 inline-block text-transparent bg-clip-text" },
-      { name: "ats", color: "blue-text-gradient" },
-    ],
-    image: ezresume,
-    source_code_link: "https://github.com/khanghbduong02/EzResume",
-    web_url: "https://ezresumeai.vercel.app",
-  },
-  {
     name: "Guardian Trail",
     description:
-      "A cross-platform cooperative game centered on continuous player communication and coordination, with keyboard and controller support for Windows, Linux, and macOS.",
+    "A cross-platform cooperative game centered on continuous player communication and coordination, with keyboard and controller support for Windows, Linux, and macOS.",
     tags: [
       { name: "multiplayer", color: "blue-text-gradient" },
       { name: "co-op", color: "green-text-gradient" },
